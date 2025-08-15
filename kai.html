@@ -157,7 +157,7 @@
             <h3 class="section-title">專業經歷</h3>
             <div class="max-w-4xl mx-auto">
                 <div class="relative pl-8 sm:pl-10 py-6 border-l-2 border-slate-300">
-                     <div class="absolute -left-3.5 top-5 w-6 h-6 bg-slate-400 rounded-full border-4 border-white"></div>
+                        <div class="absolute -left-3.5 top-5 w-6 h-6 bg-slate-400 rounded-full border-4 border-white"></div>
                     <p class="text-sm text-slate-500">2016/07 - 2019/03</p>
                     <h4 class="text-xl font-bold text-slate-800 mt-1">病嬰室｜護理師</h4>
                 </div>
@@ -175,12 +175,12 @@
                     </ul>
                 </div>
                 <div class="relative pl-8 sm:pl-10 py-6 border-l-2 border-slate-300">
-                     <div class="absolute -left-3.5 top-5 w-6 h-6 bg-slate-400 rounded-full border-4 border-white"></div>
+                        <div class="absolute -left-3.5 top-5 w-6 h-6 bg-slate-400 rounded-full border-4 border-white"></div>
                     <p class="text-sm text-slate-500">2024/07 - 2025/02</p>
                     <h4 class="text-xl font-bold text-slate-800 mt-1">手術中心｜小組長</h4>
                 </div>
                 <div class="relative pl-8 sm:pl-10 py-6 border-l-2 border-slate-300">
-                     <div class="absolute -left-3.5 top-5 w-6 h-6 bg-slate-400 rounded-full border-4 border-white"></div>
+                        <div class="absolute -left-3.5 top-5 w-6 h-6 bg-slate-400 rounded-full border-4 border-white"></div>
                     <p class="text-sm text-slate-500">2025/02 - 至今</p>
                     <h4 class="text-xl font-bold text-slate-800 mt-1">醫療事務室｜醫務管理員</h4>
                 </div>
@@ -212,7 +212,8 @@
             <h4 class="text-2xl font-bold mb-4">期待能有機會加入教學部的行列，跟上出發的腳步，一起到達</h4>
            <p class="mb-6">困難的經歷從未阻礙我的成長，更不會阻止我追求更好的自己。<br>身為一個天生的共感賦能者，能在對方開口前就能體察需要，並樂於成為支持他人成長與提供引導的力量，這份信念與特質，正是我在醫學教育與醫療行政路上持續前行的核心動力。</p>
             <div class="flex justify-center">
-                <div class="inline-flex items-center gap-3 bg-white text-slate-800 rounded-full py-2 px-5 hover:bg-amber-100 transition-colors text-lg font-semibold cursor-pointer">
+                <!-- 加上 id="mail-trigger" -->
+                <div id="mail-trigger" class="inline-flex items-center gap-3 bg-white text-slate-800 rounded-full py-2 px-5 hover:bg-amber-100 transition-colors text-lg font-semibold cursor-pointer">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path></svg>
                     <span>a511h1@mail.chimei.org.tw</span>
                 </div>
@@ -247,21 +248,22 @@
         menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         mobileMenuLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
 
-        // --- Easter Egg AI Modal Script ---
+        // --- Easter Egg AI Modal Script (修改後) ---
         const aiTrigger = document.getElementById('ai-trigger');
+        const mailTrigger = document.getElementById('mail-trigger'); // 新增：取得 MAIL 區塊
         const aiOverlay = document.getElementById('ai-modal-overlay');
         const aiModal = document.getElementById('ai-modal');
         const aiReportContainer = document.getElementById('ai-report');
 
         const reportText = `[ANALYSIS COMPLETE]\n\n綜合評估：此人選展現出罕見的「數據洞察力」與「臨床共感力」的結合。\n\n[關鍵特質分析]\n\n> DATA FLUENCY:\n  精通 Power BI，能將複雜數據轉化為具體行動策略 (佐證：院內競賽獲獎)。此能力可直接應用於改善教學成效與資源配置。\n\n> EMPATHETIC INNOVATOR:\n  具備護理背景，能深刻理解臨床痛點，並主動以自動化工具改善流程，是連結教學部與臨床前線的最佳橋樑。\n\n> CROSS-FUNCTIONAL INTEGRATOR:\n  擁有偕同超過 30 個跨單位團隊的實務經驗，展現良好的溝通協作能力。\n\n[AI 結論]\n\n潛力評估：極高。\n與「教學行政管理員」職位契合度 > 92%。\n建議行動：【立即安排面談】`;
 
-        let typeWriterInterval; // To control the typing animation
+        let typeWriterInterval; // 用於控制打字機動畫
 
         function typeWriter(element, text) {
             let i = 0;
-            element.innerHTML = ''; // Clear previous text
-            element.style.borderRight = '.15em solid #10B981'; // Show cursor
-            clearInterval(typeWriterInterval); // Stop any previous animation
+            element.innerHTML = ''; // 清除先前的文字
+            element.style.borderRight = '.15em solid #10B981'; // 顯示游標
+            clearInterval(typeWriterInterval); // 停止任何先前的動畫
             
             typeWriterInterval = setInterval(() => {
                 if (i < text.length) {
@@ -269,32 +271,40 @@
                     i++;
                 } else {
                     clearInterval(typeWriterInterval);
-                    element.style.borderRight = 'none'; // Hide cursor when done
+                    element.style.borderRight = 'none'; // 完成後隱藏游標
                 }
             }, 25);
         }
 
-        aiTrigger.addEventListener('click', () => {
+        // 將顯示彈窗的邏輯打包成一個函式
+        function showAiModal() {
             aiOverlay.classList.remove('hidden');
             setTimeout(() => {
                 aiOverlay.classList.remove('opacity-0');
                 aiModal.classList.remove('scale-95');
-            }, 10); // Fade and scale in
+            }, 10); // 淡入與放大效果
             typeWriter(aiReportContainer, reportText);
-        });
+        }
 
+        // 讓小燈泡點擊時呼叫 showAiModal
+        aiTrigger.addEventListener('click', showAiModal);
+
+        // 新增：讓 MAIL 區塊點擊時也呼叫 showAiModal
+        mailTrigger.addEventListener('click', showAiModal);
+
+        // 關閉彈窗的邏輯
         aiOverlay.addEventListener('click', (event) => {
-            // Close if clicking on the background, but not on the modal itself
+            // 如果點擊的是背景，而不是彈窗本身，就關閉它
             if (event.target === aiOverlay) {
                 aiOverlay.classList.add('opacity-0');
                 aiModal.classList.add('scale-95');
                 setTimeout(() => {
                     aiOverlay.classList.add('hidden');
-                    clearInterval(typeWriterInterval); // Stop typing if closed early
-                }, 300); // Wait for fade out
+                    clearInterval(typeWriterInterval); // 如果提早關閉，就停止打字
+                }, 300); // 等待淡出動畫完成
             }
         });
     </script>
 
 </body>
-</ht
+</html>
