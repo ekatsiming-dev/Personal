@@ -1,303 +1,210 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>黃聖凱 - 互動式履歷</title>
+    <title>個人履歷 - 高共感的賦能者</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #003566; /* 更亮的藍色 */
+            --accent-color: #fca311;  /* 琥珀色 (跳色) */
+            --highlight-bg: #fef9c3; /* 淡黃色 (重點背景) */
+        }
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
+            scroll-behavior: smooth;
         }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2.75rem;
-            top: 0.25rem;
-            width: 1.25rem;
-            height: 1.25rem;
-            border-radius: 9999px;
-            background-color: #cbd5e1; /* slate-300 */
-            border: 4px solid #f8fafc; /* slate-50 */
+        .section-title {
+            @apply text-4xl font-bold text-slate-800 mb-10 text-center tracking-wide;
         }
-        .timeline-item:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            left: -2.125rem;
-            top: 1.5rem;
-            width: 2px;
-            height: calc(100% + 1rem);
-            background-color: #cbd5e1; /* slate-300 */
+        .card {
+            @apply bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl;
         }
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        .highlight {
+            background-color: var(--highlight-bg);
+            color: var(--primary-color);
+            font-weight: 700;
+            padding: 0.1rem 0.4rem;
+            border-radius: 0.25rem;
         }
-        /* Modal styles */
-        .modal {
-            transition: opacity 0.3s ease;
-        }
-        .modal-content {
-            transition: transform 0.3s ease;
-        }
+        .primary-text { color: var(--primary-color); }
+        .accent-bg { background-color: var(--accent-color); }
+        .accent-bg:hover { background-color: #fbbf24; } /* Lighter accent for hover */
+        .timeline-dot { background-color: var(--primary-color); }
+        .timeline-border { border-color: var(--primary-color); }
     </style>
 </head>
-<body class="text-slate-700">
+<body class="bg-slate-50 text-slate-600">
 
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-40">
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm sticky top-0 z-20">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div>
-                <h1 class="text-2xl font-bold text-slate-800">黃聖凱 (Sheng-Kai, Huang)</h1>
-                <p class="text-slate-500">醫療資訊管理 | 品質行政 | 流程改善</p>
-            </div>
+            <h1 class="text-xl font-bold primary-text">我的履歷</h1>
+            <!-- Desktop Menu -->
             <nav class="hidden md:flex space-x-6">
-                <a href="#about" class="text-slate-600 hover:text-blue-600 transition">關於我</a>
-                <a href="#experience" class="text-slate-600 hover:text-blue-600 transition">工作經歷</a>
-                <a href="#skills" class="text-slate-600 hover:text-blue-600 transition">專業技能</a>
-                <a href="#projects" class="text-slate-600 hover:text-blue-600 transition">專案與成就</a>
+                <a href="#about" class="hover:primary-text">關於我</a>
+                <a href="#skills" class="hover:primary-text">核心技能</a>
+                <a href="#experience" class="hover:primary-text">專業經歷</a>
+                <a href="#portfolio" class="hover:primary-text">Power BI 作品集</a>
             </nav>
+            <!-- Hamburger Button -->
+            <button id="menu-btn" class="md:hidden block text-slate-800 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <a href="#about" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">關於我</a>
+            <a href="#skills" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">核心技能</a>
+            <a href="#experience" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">專業經歷</a>
+            <a href="#portfolio" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">Power BI 作品集</a>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-6 py-12">
-
-        <!-- About Me Section -->
-        <section id="about" class="mb-16 scroll-mt-24">
-            <h2 class="text-3xl font-bold text-slate-800 mb-6 border-l-4 border-blue-500 pl-4">關於我</h2>
-            <div class="bg-white p-8 rounded-xl shadow-md flex flex-col md:flex-row items-center gap-8">
-                <img src="https://i.imgur.com/P2nSxtb.jpeg" alt="黃聖凱個人照片" class="w-40 h-40 rounded-full object-cover shadow-lg" 
-                     onerror="this.onerror=null;this.src='https://placehold.co/160x160/E2E8F0/475569?text=SKH';">
-                <p class="text-lg leading-relaxed text-slate-600">
-                    畢業於高雄醫學大學，出身單親家庭的我，個性獨立且適應力強。在成大醫院及地區醫院服務後，我選擇於奇美醫院發展職涯。憑藉負責、高效及縝密的思考特質，於護理部協助教育訓練業務有穩定及出色的表現，並參與醫院112年教學醫院評鑑各項用心準備，業務除外仍持續精進資料分析與語言能力，期許將過去醫學教育經驗，結合文書作業整合、資料視覺化、品質指標監測與流程改善的專長，為醫院培育人才之路貢獻心力。
-                </p>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="mb-16 scroll-mt-24">
-            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-l-4 border-blue-500 pl-4">工作經歷</h2>
-            <div class="relative ml-10 pl-10">
-                <!-- Timeline Item -->
-                <div class="timeline-item mb-8">
-                    <h3 class="text-xl font-bold text-blue-600">醫療事務室 醫務管理員</h3>
-                    <p class="font-medium text-slate-600">奇美醫院 | 2025 - 至今</p>
-                    <ul class="mt-2 list-disc list-inside text-slate-600 space-y-1">
-                        <li>醫療事務指標行政支援</li>
-                        <li>急門住病床安排調度</li>
-                        <li>住院費用結算檢核</li>
-                        <li>醫療診斷書等文件之申請與管理</li>
-                    </ul>
-                </div>
-                <!-- Timeline Item -->
-                <div class="timeline-item mb-8">
-                    <h3 class="text-xl font-bold text-slate-800">手術中心 小組長</h3>
-                    <p class="font-medium text-slate-600">奇美醫院 | 2024 - 2025</p>
-                    <ul class="mt-2 list-disc list-inside text-slate-600 space-y-1">
-                        <li>協助新創部門流程建立與行政協調</li>
-                        <li>關鍵指標監測及會議執行</li>
-                    </ul>
-                </div>
-                 <!-- Timeline Item -->
-                <div class="timeline-item mb-8">
-                    <h3 class="text-xl font-bold text-slate-800">福委會 委員</h3>
-                    <p class="font-medium text-slate-600">奇美醫院 | 2023 - 2025</p>
-                    <ul class="mt-2 list-disc list-inside text-slate-600 space-y-1">
-                        <li>參與員工福利政策推動及活動協辦</li>
-                    </ul>
-                </div>
-                <!-- Timeline Item -->
-                <div class="timeline-item mb-8">
-                    <h3 class="text-xl font-bold text-slate-800">護理部 書記</h3>
-                    <p class="font-medium text-slate-600">奇美醫院 | 2019 - 2024</p>
-                    <ul class="mt-2 list-disc list-inside text-slate-600 space-y-1">
-                        <li>協助教育訓練、師資培育、研究發展等業務</li>
-                        <li>運用Power BI將各業務部門指標視覺化</li>
-                        <li>運用自動化工具優化業務流程，縮短人工作業時間</li>
-                        <li>具備從無到有的規劃執行力，協助新部門運作</li>
-                    </ul>
-                </div>
-                <!-- Timeline Item -->
-                <div class="timeline-item">
-                    <h3 class="text-xl font-bold text-slate-800">病嬰室 護理師</h3>
-                    <p class="font-medium text-slate-600">奇美醫院 | 2016 - 2019</p>
-                    <ul class="mt-2 list-disc list-inside text-slate-600 space-y-1">
-                        <li>母嬰照護、衛教</li>
-                        <li>品管指標監控</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="mb-16 scroll-mt-24">
-            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-l-4 border-blue-500 pl-4">專業技能</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Skill Card -->
-                <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center transition-all duration-300">
-                    <div class="text-4xl text-blue-500 mb-3">📊</div>
-                    <h3 class="font-bold text-lg">Power BI</h3>
-                    <p class="text-sm text-slate-500">資料清洗、指標呈現</p>
-                </div>
-                <!-- Skill Card -->
-                <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center transition-all duration-300">
-                    <div class="text-4xl text-green-500 mb-3">📈</div>
-                    <h3 class="font-bold text-lg">Excel</h3>
-                    <p class="text-sm text-slate-500">VBA巨集、樞紐分析</p>
-                </div>
-                <!-- Skill Card -->
-                <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center transition-all duration-300">
-                    <div class="text-4xl text-orange-500 mb-3">🎨</div>
-                    <h3 class="font-bold text-lg">PowerPoint</h3>
-                    <p class="text-sm text-slate-500">海報排版設計</p>
-                </div>
-                <!-- Skill Card -->
-                <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center transition-all duration-300">
-                    <div class="text-4xl text-sky-500 mb-3">📄</div>
-                    <h3 class="font-bold text-lg">Word</h3>
-                    <p class="text-sm text-slate-500">合併列印</p>
-                </div>
-                <!-- Skill Card -->
-                <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center transition-all duration-300">
-                    <div class="text-4xl text-purple-500 mb-3">🤖</div>
-                    <h3 class="font-bold text-lg">RPA / Power Automate</h3>
-                    <p class="text-sm text-slate-500">簡易流程製作與維護</p>
-                </div>
-                <!-- Skill Card -->
-                <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center transition-all duration-300">
-                    <div class="text-4xl text-teal-500 mb-3">💡</div>
-                    <h3 class="font-bold text-lg">AI 工具</h3>
-                    <p class="text-sm text-slate-500">ChatGPT, Bing Copilot</p>
-                </div>
-                <!-- Skill Card -->
-                <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center transition-all duration-300">
-                    <div class="text-4xl text-indigo-500 mb-3">🇬🇧</div>
-                    <h3 class="font-bold text-lg">English</h3>
-                    <p class="text-sm text-slate-500">GEPT 中級</p>
-                </div>
-                 <!-- Education Card -->
-                <div class="skill-card bg-white p-6 rounded-xl shadow-md text-center transition-all duration-300">
-                    <div class="text-4xl text-amber-500 mb-3">🎓</div>
-                    <h3 class="font-bold text-lg">學歷</h3>
-                    <p class="text-sm text-slate-500">高雄醫學大學 護理系</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects & Achievements Section -->
-        <section id="projects" class="mb-16 scroll-mt-24">
-            <h2 class="text-3xl font-bold text-slate-800 mb-8 border-l-4 border-blue-500 pl-4">專案與成就</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Power BI Projects -->
-                <div>
-                    <h3 class="text-2xl font-semibold text-slate-700 mb-4">Power BI 視覺化報表</h3>
-                    <p class="mb-6 text-slate-600">點擊下方圖片查看各項分析報表範例。</p>
-                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
-                        <img src="https://i.imgur.com/uG2P7aX.png" alt="護理部 在職人力" class="cursor-pointer rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" onclick="openModal(this.src, this.alt)">
-                        <img src="https://i.imgur.com/vHqjKj9.png" alt="護理部 在職進修調查" class="cursor-pointer rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" onclick="openModal(this.src, this.alt)">
-                        <img src="https://i.imgur.com/n6bBwZc.png" alt="護理部 離職分析" class="cursor-pointer rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" onclick="openModal(this.src, this.alt)">
-                        <img src="https://i.imgur.com/w9r3rI3.png" alt="護理部 跌倒事件" class="cursor-pointer rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" onclick="openModal(this.src, this.alt)">
-                        <img src="https://i.imgur.com/o2Kq5yR.png" alt="護理部 準時下班率" class="cursor-pointer rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" onclick="openModal(this.src, this.alt)">
-                        <img src="https://i.imgur.com/c4h3E0l.png" alt="護理部 學術會議發表" class="cursor-pointer rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300" onclick="openModal(this.src, this.alt)">
-                    </div>
-                </div>
-
-                <!-- Awards -->
-                <div>
-                    <h3 class="text-2xl font-semibold text-slate-700 mb-4">榮譽肯定</h3>
-                    <ul class="space-y-4">
-                        <li class="bg-white p-4 rounded-lg shadow-sm flex items-center">
-                            <span class="text-yellow-500 text-2xl mr-4">🏆</span>
-                            <div>
-                                <p class="font-semibold">奇美醫院Power BI比賽 銀獎</p>
-                                <p class="text-sm text-slate-500">2024 - 手術房間使用分析</p>
-                            </div>
-                        </li>
-                        <li class="bg-white p-4 rounded-lg shadow-sm flex items-center">
-                            <span class="text-yellow-500 text-2xl mr-4">🏆</span>
-                            <div>
-                                <p class="font-semibold">奇美醫院Power BI比賽 佳作</p>
-                                <p class="text-sm text-slate-500">2024 - 護理部人力現況地圖</p>
-                            </div>
-                        </li>
-                         <li class="bg-white p-4 rounded-lg shadow-sm flex items-center">
-                            <span class="text-yellow-500 text-2xl mr-4">🏆</span>
-                            <div>
-                                <p class="font-semibold">國際護理創意獎暨坎城未來獅培訓計畫</p>
-                                <p class="text-sm text-slate-500">2022 - 銅獎、人氣獎、社群影響力獎</p>
-                            </div>
-                        </li>
-                        <li class="bg-white p-4 rounded-lg shadow-sm flex items-center">
-                            <span class="text-yellow-500 text-2xl mr-4">🏆</span>
-                            <div>
-                                <p class="font-semibold">奇美醫院 CiCARE 比賽 銀獎</p>
-                                <p class="text-sm text-slate-500">2021 - 「拒絕大排長龍」</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
+    <!-- Hero Section -->
+    <main class="container mx-auto px-6 py-16 md:py-24 text-center">
+        <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4">你好，我是[您的姓名]</h2>
+        <p class="text-xl md:text-2xl font-semibold" style="color: var(--primary-color);">一位高共感的賦能者</p>
     </main>
 
-    <!-- Modal -->
-    <div id="imageModal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 hidden opacity-0" onclick="closeModal()">
-        <div class="modal-content bg-white p-4 rounded-lg max-w-4xl max-h-full mx-auto transform scale-95" onclick="event.stopPropagation()">
-            <div class="flex justify-between items-center pb-2 mb-2 border-b">
-                <h3 id="modalTitle" class="text-xl font-semibold text-slate-800"></h3>
-                <button onclick="closeModal()" class="text-slate-500 hover:text-slate-800 text-3xl">&times;</button>
+    <!-- About Me Section -->
+    <section id="about" class="bg-white py-20 md:py-28">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h3 class="section-title">關於我</h3>
+            <div class="text-lg space-y-6 text-slate-700 leading-relaxed">
+                <p>畢業於高雄醫學大學，出身單親家庭的我，個性獨立且適應力強。在成大醫院及地區醫院服務後，我選擇於奇美醫院發展職涯。</p>
+                <p>在護理部任職教育訓練、研究發展、師資培育書記期間，我負責核心業務，例如：醫事人員教學補助、部定教職與師資培育的行政規劃、OSCE培訓的執行，以及於E-portfolio與影音平台的教材維護，已經與教學部有著<span class="highlight">密切且深度的合作</span>。</p>
+                <p>源自第一線的護理背景，讓我對臨床同仁面臨的臨床及行政壓力有著<span class="highlight">深刻的共感</span>，這份理解便是我<span class="highlight">主動去改善流程、解決系統性痛點</span>的核心驅動力。我不僅是執行任務，更是將同事提出的困擾，視為整個團隊提升效率的契機。為此我也<span class="highlight">深入研究 Power BI 與自動化工具</span>，目標就是節省團隊的時間及精力，讓專業能真正回歸專業。</p>
+                <p>對我而言，數位化與工具的最終價值，在於讓團隊得以將任務完美達成。我希望能將這份<span class="highlight">跨領域的經歷</span>結合教育訓練相關工作經驗帶入教學部。</p>
             </div>
-            <img id="modalImage" src="" alt="放大圖片" class="w-full h-auto object-contain" style="max-height: 80vh;">
         </div>
-    </div>
+    </section>
+
+    <!-- Core Skills Section -->
+    <section id="skills" class="py-20 md:py-28">
+        <div class="container mx-auto px-6">
+            <h3 class="section-title">核心技能</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Skill Cards -->
+                <div class="card p-6 text-center">
+                    <div class="mb-4"><svg class="w-16 h-16 mx-auto primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg></div>
+                    <h4 class="font-bold text-xl text-slate-800 mb-2">數據分析與視覺化</h4>
+                    <p class="text-sm">精通Power BI 儀表板設計（曾獲院內比賽銀獎與佳作），熟悉指標系統建立、數據清洗與跨系統資料整合。</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="mb-4"><svg class="w-16 h-16 mx-auto primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+                    <h4 class="font-bold text-xl text-slate-800 mb-2">流程改善與自動化</h4>
+                    <p class="text-sm">善用office軟體、Google等數位工具，將各項行政業務智能化與自動化。擅長從使用者痛點出發，進行流程再設計。</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="mb-4"><svg class="w-16 h-16 mx-auto primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21v-1a6 6 0 00-1.78-4.125a4 4 0 00-6.44 0A6 6 0 003 20v1h12z"></path></svg></div>
+                    <h4 class="font-bold text-xl text-slate-800 mb-2">專案執行與協作</h4>
+                    <p class="text-sm">有效率的偕同30餘個護理單位，完成評鑑與培訓資料的整合。參與新創部門從零到一的制度建立。</p>
+                </div>
+                <div class="card p-6 text-center">
+                    <div class="mb-4"><svg class="w-16 h-16 mx-auto primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
+                    <h4 class="font-bold text-xl text-slate-800 mb-2">醫務教學行政</h4>
+                    <p class="text-sm">參與教學醫院評鑑，具備醫事教育積分認證與管理實務經驗，並能執行臨床品質指標監測。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="bg-white py-20 md:py-28">
+        <div class="container mx-auto px-6">
+            <h3 class="section-title">專業經歷</h3>
+            <div class="max-w-4xl mx-auto">
+                <div class="relative pl-8 sm:pl-10 py-6 border-l-2 timeline-border">
+                    <div class="absolute -left-3.5 top-5 w-6 h-6 timeline-dot rounded-full border-4 border-white"></div>
+                    <p class="text-sm text-slate-500">2019/03 - 2024/07</p>
+                    <h4 class="text-xl font-bold text-slate-800 mt-1">護理部｜教育訓練書記</h4>
+                    <p class="mt-2 mb-4 text-slate-600">擔任跨單位資料匯集樞紐，負責多項教學培育計畫的運作與評鑑任務，並致力於運用數位工具，改善行政流程與提升團隊效率。</p>
+                    <ul class="list-disc list-inside space-y-2 text-sm">
+                        <li><span class="font-semibold">流程改善與自動化：</span> 主導將積分申請、教學補助等繁瑣業務自動化，成功將核心行政作業時間縮短50%。</li>
+                        <li><span class="font-semibold">指標視覺化：</span> 部內首次運用Power BI指標視覺化，其中「護理部人力」指標獲院內競賽佳作。</li>
+                        <li><span class="font-semibold">跨單位整合：</span> 有效率整合全院 34 個護理單位的教學與評鑑資料，順利完成教學醫院評鑑任務。</li>
+                        <li><span class="font-semibold">教學培育計畫運作：</span> 負責新進人員、師資培育、OSCE考官培訓等訓練計畫，並維護 E-portfolio 及影音教材平台。</li>
+                    </ul>
+                </div>
+                <div class="relative pl-8 sm:pl-10 py-6 border-l-2 border-slate-300">
+                     <div class="absolute -left-3.5 top-5 w-6 h-6 bg-slate-400 rounded-full border-4 border-white"></div>
+                    <p class="text-sm text-slate-500">2025/02 - 至今</p>
+                    <h4 class="text-xl font-bold text-slate-800 mt-1">醫療事務室｜醫務管理員</h4>
+                </div>
+                <div class="relative pl-8 sm:pl-10 py-6 border-l-2 border-slate-300">
+                     <div class="absolute -left-3.5 top-5 w-6 h-6 bg-slate-400 rounded-full border-4 border-white"></div>
+                    <p class="text-sm text-slate-500">2024/07 - 2025/02</p>
+                    <h4 class="text-xl font-bold text-slate-800 mt-1">手術中心｜小組長</h4>
+                </div>
+                <div class="relative pl-8 sm:pl-10 py-6 border-l-2 border-slate-300">
+                     <div class="absolute -left-3.5 top-5 w-6 h-6 bg-slate-400 rounded-full border-4 border-white"></div>
+                    <p class="text-sm text-slate-500">2016/07 - 2019/03</p>
+                    <h4 class="text-xl font-bold text-slate-800 mt-1">病嬰室｜護理師</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 md:py-28">
+        <div class="container mx-auto px-6">
+            <h3 class="section-title">Power BI 作品集</h3>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- All 11 portfolio items with updated image URLs -->
+                <div class="card"><img class="w-full h-48 object-cover" src="https://i.freeimage.host/FDgc3Au" alt="手術房間使用分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">手術房間使用分析 (銀獎)</h5><p class="text-sm mb-4">分析手術室使用率、麻醉方式、術式手術量與趨勢，作為管理者資源分配依據。</p><a href="https://reurl.cc/lYy2nY" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card"><img class="w-full h-48 object-cover" src="https://i.freeimage.host/FDgc9FS.png" alt="護理部人力 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部人力 (佳作)</h5><p class="text-sm mb-4">分析護理單位人力分布，串接跨系統資料，作為多項分析的母本資料與評鑑介紹工具。</p><a href="https://reurl.cc/QaEgm5" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card"><img class="w-full h-48 object-cover" src="https://i.freeimage.host/FDgapP2.png" alt="護理部跌倒事件分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部跌倒事件分析</h5><p class="text-sm mb-4">分析跌倒族群、情境與措施，利用關鍵影響因素及原因樹狀圖，作為品質監測與改善依據。</p><a href="https://reurl.cc/2QjeaO" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card"><img class="w-full h-48 object-cover" src="https://i.freeimage.host/FDgc29e.png" alt="護理部準時下班率 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部準時下班率</h5><p class="text-sm mb-4">以圖像化(小魚)呈現負向指標，兼顧主管需求與員工隱私，分析各單位準時下班率。</p><a href="https://reurl.cc/GNpvgZ" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card"><img class="w-full h-48 object-cover" src="https://i.freeimage.host/FDgczS1.png" alt="臨床教師總覽 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">臨床教師與學術總覽</h5><p class="text-sm mb-4">整合臨床教師、在職進修、部定教職、學術發表等資料，作為評鑑的單位介紹工具。</p><a href="https://reurl.cc/dayg86" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card"><img class="w-full h-48 object-cover" src="https://i.freeimage.host/FDgcTHF.png" alt="護理部學術發表 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部學術發表</h5><p class="text-sm mb-4">分析各單位學術會議、期刊、專案、專利、書籍等學術發表數量及內容。</p><a href="https://reurl.cc/WONgWx" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card"><img class="w-full h-48 object-cover" src="https://i.freeimage.host/FDgcuAg.png" alt="住院來源分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">住院來源分析</h5><p class="text-sm mb-4">分析各科部住院來源，並利用書籤功能提供多維度無縫檢視圖表。</p><a href="https://reurl.cc/oYy6mj" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card"><img class="w-full h-48 object-cover" src="https://i.freeimage.host/FDgcANa.png" alt="出院時間統計 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">出院時間統計</h5><p class="text-sm mb-4">分析各科部10點前出院、今辦明出比率，提供管理者做為出入院效率管理參考。</p><a href="https://reurl.cc/z5DL7V" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card"><img class="w-full h-48 object-cover" src="https://i.freeimage.host/FDgcRDJ.png" alt="新進人員訓練滿意度 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">新進人員訓練滿意度</h5><p class="text-sm mb-4">分析各年度新進人員訓練滿意度，並用於教學醫院評鑑資料呈現工具之一。</p><a href="https://reurl.cc/7VdNL9" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card"><img class="w-full h-48 object-cover" src="https://i.freeimage.host/FDgcaPp.png" alt="護理部全人照護會議 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部全人照護會議</h5><p class="text-sm mb-4">分析各年度跨領域會議的場次數量及主題，並用於教學醫院評鑑資料呈現工具之一。</p><a href="https://reurl.cc/yAvbn2" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card"><img class="w-full h-48 object-cover" src="https://i.freeimage.host/FDgc0lI.png" alt="護理部離職分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部離職分析</h5><p class="text-sm mb-4">分析各單位離職人數及離職原因，作為管理者人力資源管理參考。</p><a href="https://reurl.cc/VWMZjy" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-white py-12" style="background-color: var(--primary-color);">
+        <div class="container mx-auto px-6 text-center">
+            <h4 class="text-2xl font-bold mb-4">聯絡我</h4>
+            <p class="mb-6">期待能有機會為您的團隊貢獻心力。</p>
+            <div class="flex justify-center space-x-6">
+                <a href="mailto:your-email@example.com" class="bg-white text-slate-800 rounded-full p-3 hover:bg-amber-100 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path></svg>
+                </a>
+                <a href="#" class="bg-white text-slate-800 rounded-full p-3 hover:bg-amber-100 transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+                </a>
+            </div>
+            <p class="mt-8 text-sm text-slate-400">&copy; 2025 [您的姓名]. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script>
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const modalTitle = document.getElementById('modalTitle');
+        // JavaScript for mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
 
-        function openModal(src, alt) {
-            modalImage.src = src;
-            modalTitle.textContent = alt;
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modal.querySelector('.modal-content').classList.remove('scale-95');
-            }, 10); // Short delay for transition
-        }
-
-        function closeModal() {
-            modal.classList.add('opacity-0');
-            modal.querySelector('.modal-content').classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300); // Match transition duration
-        }
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                closeModal();
-            }
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+
+        // Close menu when a link is clicked for smooth scrolling
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
         });
-
     </script>
+
 </body>
 </html>
