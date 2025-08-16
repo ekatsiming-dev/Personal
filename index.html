@@ -15,9 +15,11 @@
             --accent-color: #fca311;
             --highlight-bg: #fef9c3;
         }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            scroll-behavior: smooth;
         }
         .section-title {
             @apply text-4xl md:text-6xl font-extrabold text-slate-800 mb-12 text-center tracking-wide relative pb-4;
@@ -44,10 +46,11 @@
 
         /* --- 彩蛋 AI 彈窗樣式 --- */
         #ai-modal-overlay {
-            @apply fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300;
+            @apply fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300 ease-out;
         }
         #ai-modal {
-            @apply bg-gray-900 text-green-400 font-mono p-6 rounded-lg shadow-2xl max-w-2xl w-11/12 border border-green-700 transition-transform duration-300;
+            @apply bg-gray-900 text-green-400 font-mono p-6 rounded-lg shadow-2xl max-w-2xl w-11/12 border border-green-700;
+            @apply transition-all duration-300 ease-out;
         }
         .typewriter {
             white-space: pre-wrap;
@@ -248,7 +251,6 @@
         <div class="container mx-auto px-6">
             <h3 class="section-title">Power BI 作品集</h3>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- === 修改：使用 aspect-video 容器維持 16:9 比例 === -->
                 <div class="card portfolio-card">
                     <div class="aspect-video">
                         <img class="w-full h-full object-cover" src="BI-1.png" alt="手術房間使用分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
@@ -372,7 +374,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="text-white py-12" style="background-color: var(--primary-color);">
+    <footer id="page-footer" class="text-white py-12" style="background-color: var(--primary-color);">
         <div class="container mx-auto px-6 text-center">
             <h4 class="text-2xl font-bold mb-4">期待能有機會加入教學部的行列，跟上出發的腳步，一起到達</h4>
            <p class="mb-6">困難的經歷從未阻礙我的成長，更不會阻止我追求更好的自己。<br>身為一個天生的共感賦能者，能在對方開口前就能體察需要，並樂於成為支持他人成長與提供引導的力量，這份信念與特質，正是我在醫學教育與醫療行政路上持續前行的核心動力。</p>
@@ -391,12 +393,16 @@
                     </span>
                 </span>
             </p>
+            <!-- === 新增：彩蛋提示文字 === -->
+            <p id="easter-egg-hint" class="hidden text-center mt-4 text-amber-300 font-semibold">
+                ↓ 您發現了一個秘密，請繼續往下探索 ↓
+            </p>
         </div>
     </footer>
     
     <!-- AI Easter Egg Modal -->
     <div id="ai-modal-overlay" class="hidden opacity-0">
-        <div id="ai-modal" class="transform scale-95">
+        <div id="ai-modal" class="transform opacity-0 scale-95 -translate-y-4">
             <p class="text-sm text-green-600">// AI HEADHUNTER SYSTEM //</p>
             <p class="text-sm text-green-600">// STATUS: ANALYZING PROFILE...</p>
             <p class="text-sm text-green-600 mb-4">// TARGET: HUANG, SHENG-KAI</p>
@@ -418,6 +424,8 @@
         const aiOverlay = document.getElementById('ai-modal-overlay');
         const aiModal = document.getElementById('ai-modal');
         const aiReportContainer = document.getElementById('ai-report');
+        // === 新增：取得提示文字的元素 ===
+        const easterEggHint = document.getElementById('easter-egg-hint'); 
         const reportText = `[ANALYSIS COMPLETE]\n\n綜合評估：此人選展現出罕見的「數據洞察力」與「臨床共感力」的結合。\n\n[關鍵特質分析]\n\n> DATA FLUENCY:\n  精通 Power BI，能將複雜數據轉化為具體行動策略 (佐證：院內競賽獲獎)。此能力可直接應用於改善教學成效與資源配置。\n\n> EMPATHETIC INNOVATOR:\n  具備護理背景，能深刻理解臨床痛點，並主動以自動化工具改善流程，是連結教學部與臨床前線的最佳橋樑。\n\n> CROSS-FUNCTIONAL INTEGRATOR:\n  擁有偕同超過 30 個跨單位團隊的實務經驗，展現良好的溝通協作能力。\n\n[AI 結論]\n\n潛力評估：極高。\n與「教學行政管理員」職位契合度 > 92%。\n建議行動：【立即安排面談】`;
         let typeWriterInterval;
         function typeWriter(element, text) {
@@ -435,23 +443,43 @@
                 }
             }, 25);
         }
-        function showAiModal() {
+        
+        // === 修改：觸發彩蛋的整合函式 ===
+        function triggerEasterEgg() {
+            // 1. 顯示提示文字
+            if (easterEggHint) {
+                easterEggHint.classList.remove('hidden');
+            }
+
+            // 2. 顯示 AI 彈窗 (原本的邏輯)
             aiOverlay.classList.remove('hidden');
             setTimeout(() => {
                 aiOverlay.classList.remove('opacity-0');
+                aiModal.classList.remove('opacity-0');
                 aiModal.classList.remove('scale-95');
-            }, 10);
-            typeWriter(aiReportContainer, reportText);
+                aiModal.classList.remove('-translate-y-4');
+                typeWriter(aiReportContainer, reportText);
+            }, 20);
         }
-        aiTrigger.addEventListener('click', showAiModal);
-        mailTrigger.addEventListener('click', showAiModal);
+
+        aiTrigger.addEventListener('click', triggerEasterEgg);
+        mailTrigger.addEventListener('click', triggerEasterEgg);
+
+        // === 修改：關閉視窗時，也要隱藏提示文字 ===
         aiOverlay.addEventListener('click', (event) => {
             if (event.target === aiOverlay) {
                 aiOverlay.classList.add('opacity-0');
+                aiModal.classList.add('opacity-0');
                 aiModal.classList.add('scale-95');
+                aiModal.classList.add('-translate-y-4');
+
                 setTimeout(() => {
                     aiOverlay.classList.add('hidden');
                     clearInterval(typeWriterInterval);
+                    // 關閉時一併隱藏提示
+                    if (easterEggHint) {
+                        easterEggHint.classList.add('hidden');
+                    }
                 }, 300);
             }
         });
