@@ -17,7 +17,7 @@
             scroll-behavior: smooth;
         }
         .section-title {
-            @apply text-6xl font-extrabold text-slate-800 mb-12 text-center tracking-wide relative pb-4;
+            @apply text-4xl md:text-6xl font-extrabold text-slate-800 mb-12 text-center tracking-wide relative pb-4;
         }
         .section-title::after {
             content: '';
@@ -73,6 +73,11 @@
             animation: restless-glow 2s infinite ease-in-out;
         }
 
+        /* --- 作品集卡片過渡效果 --- */
+        .portfolio-card {
+            transition: all 0.5s ease-in-out;
+        }
+
     </style>
 </head>
 <body class="bg-slate-50 text-slate-600">
@@ -118,7 +123,7 @@
             <div class="text-lg space-y-6 text-slate-700 leading-relaxed">
                 <p>畢業於高雄醫學大學，出身單親家庭的我，個性獨立且適應力強。在成大醫院及地區醫院服務後，我選擇於奇美醫院發展職涯。</p>
                 <p>在護理部任職教育訓練、研究發展、師資培育書記期間，負責相關核心業務，例如：醫事人員教學補助、部定教職與師資培育的行政規劃、OSCE培訓的執行，以及於E-portfolio與影音平台的教材維護，已經與<span class="highlight">教學部有著密切且深度的合作</span>。</p>
-                <p>源自第一線的護理背景，讓我對臨床同仁面臨的臨床及行政壓力有著<span class="highlight">深刻的共感</span>，這份理解便是我<span class="highlight">主動去改善流程、解決系統性痛點</span>的核心驅動力。我不僅是執行任務，更是將同事提出的困擾，視為整個團隊提升效率的契機。為此我也<span class="highlight">深入研究AI協作、Power BI 與自動化工具</span>，目標就是節省團隊的時間及精力，讓專業能真正回歸專業。</p>
+                <p>源自第一線的護理背景，讓我對臨床同仁面臨的臨床及行政壓力有著<span class="highlight">深刻的共感</span>，這份理解便是我<span class="highlight">主動去改善流程、解決系統性痛點</span>的核心驅動力。我不僅是執行任務，更是將同事提出的困擾，視為整個團隊提升效率的契機。為此我也<span class="highlight">深入研究 Power BI 與自動化工具</span>，目標就是節省團隊的時間及精力，讓專業能真正回歸專業。</p>
                 <p>對我而言，數位化與工具的最終價值，在於讓團隊得以將任務完美達成。我希望能將這份<span class="highlight">跨領域的經歷</span>結合<span class="highlight">教育訓練相關工作經驗</span>帶入教學部。</p>
             </div>
         </div>
@@ -136,7 +141,7 @@
                 <div class="card p-6 text-center">
                     <div class="mb-4"><svg class="w-16 h-16 mx-auto primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
                     <h4 class="font-bold text-xl text-slate-800 mb-2">流程改善與自動化</h4>
-                    <p class="text-sm">善用Microsoft、Google、AI等數位工具，將各項行政業務智能化與自動化。擅長從使用者痛點出發，進行流程再設計。</p>
+                    <p class="text-sm">善用office軟體、Google等數位工具，將各項行政業務智能化與自動化。擅長從使用者痛點出發，進行流程再設計。</p>
                 </div>
                 <div class="card p-6 text-center">
                     <div class="mb-4"><svg class="w-16 h-16 mx-auto primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M15 21v-1a6 6 0 00-1.78-4.125a4 4 0 00-6.44 0A6 6 0 003 20v1h12z"></path></svg></div>
@@ -169,7 +174,7 @@
                     <ul class="list-disc list-inside space-y-2 text-sm">
                         <li><span class="font-semibold">流程改善與自動化：</span> 主導將積分申請、教學補助等繁瑣業務自動化，成功將核心行政作業時間縮短50%。</li>
                         <li><span class="font-semibold">指標視覺化：</span> 部內首次運用Power BI指標視覺化，其中「護理部人力」指標獲院內競賽佳作。</li>
-                        <li><span class="font-semibold">跨單位資料整合：</span> 有效率整合全院 34 個護理單位的教學與評鑑資料，順利完成教學醫院評鑑任務。</li>
+                        <li><span class="font-semibold">跨單位整合：</span> 有效率整合全院 34 個護理單位的教學與評鑑資料，順利完成教學醫院評鑑任務。</li>
                         <li><span class="font-semibold">教學培育計畫運作：</span> 負責新進人員、師資培育、OSCE考官培訓等訓練計畫，並維護 E-portfolio 及影音教材平台。</li>
                         <li><span class="font-semibold">防疫資訊佈達 (2021-2023)：</span> 擔任護理部防疫小編，統整醫院政策，即時發布最新作業原則。</li>
                     </ul>
@@ -192,17 +197,26 @@
         <div class="container mx-auto px-6">
             <h3 class="section-title">Power BI 作品集</h3>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgc3Au.png" alt="手術房間使用分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">手術房間使用分析<br>第二屆Power BI指標視覺化 銀獎</h5><p class="text-sm mb-4">分析手術室使用率、麻醉方式、術式手術量與趨勢，作為管理者資源分配依據。</p><a href="https://reurl.cc/lYy2nY" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
-                <div class="card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgc9FS.png" alt="護理部人力 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部人力<br>第一屆Power BI指標視覺化 佳作</h5><p class="text-sm mb-4">分析護理單位人力分布，串接跨系統資料，作為多項分析的母本資料與評鑑介紹工具。</p><a href="https://reurl.cc/QaEgm5" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
-                <div class="card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgapP2.png" alt="護理部跌倒事件分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部跌倒事件分析</h5><p class="text-sm mb-4">分析跌倒族群、情境與措施，利用關鍵影響因素及原因樹狀圖，作為品質監測與改善依據。</p><a href="https://reurl.cc/2QjeaO" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
-                <div class="card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgc29e.png" alt="護理部準時下班率 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部準時下班率</h5><p class="text-sm mb-4">以圖像化(小魚)呈現負向指標，兼顧主管需求與員工隱私，分析各單位準時下班率。</p><a href="https://reurl.cc/GNpvgZ" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
-                <div class="card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgczS1.png" alt="臨床教師總覽 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">臨床教師與學術總覽</h5><p class="text-sm mb-4">整合臨床教師、在職進修、部定教職、學術發表等資料，作為評鑑的單位介紹工具。</p><a href="https://reurl.cc/dayg86" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
-                <div class="card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgcTHF.png" alt="護理部學術發表 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部學術發表</h5><p class="text-sm mb-4">分析各單位學術會議、期刊、專案、專利、書籍等學術發表數量及內容。</p><a href="https://reurl.cc/WONgWx" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
-                <div class="card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgcuAg.png" alt="住院來源分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">住院來源分析</h5><p class="text-sm mb-4">分析各科部住院來源，並利用書籤功能提供多維度無縫檢視圖表。</p><a href="https://reurl.cc/oYy6mj" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
-                <div class="card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgcANa.png" alt="出院時間統計 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">出院時間統計</h5><p class="text-sm mb-4">分析各科部10點前出院、今辦明出比率，提供管理者做為出入院效率管理參考。</p><a href="https://reurl.cc/z5DL7V" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
-                <div class="card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgcRDJ.png" alt="新進人員訓練滿意度 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">新進人員訓練滿意度</h5><p class="text-sm mb-4">分析各年度新進人員訓練滿意度，並用於教學醫院評鑑資料呈現工具之一。</p><a href="https://reurl.cc/7VdNL9" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
-                <div class="card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgcaPp.png" alt="護理部全人照護會議 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部全人照護會議</h5><p class="text-sm mb-4">分析各年度跨領域會議的場次數量及主題，並用於教學醫院評鑑資料呈現工具之一。</p><a href="https://reurl.cc/yAvbn2" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
-                <div class="card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgc0lI.png" alt="護理部離職分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部離職分析</h5><p class="text-sm mb-4">分析各單位離職人數及離職原因，作為管理者人力資源管理參考。</p><a href="https://reurl.cc/VWMZjy" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <!-- 前 6 個作品 -->
+                <div class="card portfolio-card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgc3Au.png" alt="手術房間使用分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">手術房間使用分析 (銀獎)</h5><p class="text-sm mb-4">分析手術室使用率、麻醉方式、術式手術量與趨勢，作為管理者資源分配依據。</p><a href="https://reurl.cc/lYy2nY" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card portfolio-card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgc9FS.png" alt="護理部人力 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部人力 (佳作)</h5><p class="text-sm mb-4">分析護理單位人力分布，串接跨系統資料，作為多項分析的母本資料與評鑑介紹工具。</p><a href="https://reurl.cc/QaEgm5" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card portfolio-card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgapP2.png" alt="護理部跌倒事件分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部跌倒事件分析</h5><p class="text-sm mb-4">分析跌倒族群、情境與措施，利用關鍵影響因素及原因樹狀圖，作為品質監測與改善依據。</p><a href="https://reurl.cc/2QjeaO" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card portfolio-card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgc29e.png" alt="護理部準時下班率 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部準時下班率</h5><p class="text-sm mb-4">以圖像化(小魚)呈現負向指標，兼顧主管需求與員工隱私，分析各單位準時下班率。</p><a href="https://reurl.cc/GNpvgZ" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card portfolio-card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgczS1.png" alt="臨床教師總覽 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">臨床教師與學術總覽</h5><p class="text-sm mb-4">整合臨床教師、在職進修、部定教職、學術發表等資料，作為評鑑的單位介紹工具。</p><a href="https://reurl.cc/dayg86" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card portfolio-card"><img class="w-full h-48 object-cover" src="https://iili.io/FDgcTHF.png" alt="護理部學術發表 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部學術發表</h5><p class="text-sm mb-4">分析各單位學術會議、期刊、專案、專利、書籍等學術發表數量及內容。</p><a href="https://reurl.cc/WONgWx" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                
+                <!-- 預設隱藏的作品 -->
+                <div class="card portfolio-card collapsible-card hidden"><img class="w-full h-48 object-cover" src="https://iili.io/FDgcuAg.png" alt="住院來源分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">住院來源分析</h5><p class="text-sm mb-4">分析各科部住院來源，並利用書籤功能提供多維度無縫檢視圖表。</p><a href="https://reurl.cc/oYy6mj" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card portfolio-card collapsible-card hidden"><img class="w-full h-48 object-cover" src="https://iili.io/FDgcANa.png" alt="出院時間統計 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">出院時間統計</h5><p class="text-sm mb-4">分析各科部10點前出院、今辦明出比率，提供管理者做為出入院效率管理參考。</p><a href="https://reurl.cc/z5DL7V" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card portfolio-card collapsible-card hidden"><img class="w-full h-48 object-cover" src="https://iili.io/FDgcRDJ.png" alt="新進人員訓練滿意度 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">新進人員訓練滿意度</h5><p class="text-sm mb-4">分析各年度新進人員訓練滿意度，並用於教學醫院評鑑資料呈現工具之一。</p><a href="https://reurl.cc/7VdNL9" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card portfolio-card collapsible-card hidden"><img class="w-full h-48 object-cover" src="https://iili.io/FDgcaPp.png" alt="護理部全人照護會議 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部全人照護會議</h5><p class="text-sm mb-4">分析各年度跨領域會議的場次數量及主題，並用於教學醫院評鑑資料呈現工具之一。</p><a href="https://reurl.cc/yAvbn2" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+                <div class="card portfolio-card collapsible-card hidden"><img class="w-full h-48 object-cover" src="https://iili.io/FDgc0lI.png" alt="護理部離職分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/475569?text=圖片載入失敗';"><div class="p-6"><h5 class="font-bold text-lg text-slate-800 mb-2">護理部離職分析</h5><p class="text-sm mb-4">分析各單位離職人數及離職原因，作為管理者人力資源管理參考。</p><a href="https://reurl.cc/VWMZjy" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a></div></div>
+            </div>
+            <!-- 顯示/收合 按鈕 -->
+            <div class="mt-12 text-center">
+                <button id="toggle-portfolio-btn" class="accent-bg text-white font-semibold px-6 py-3 rounded-lg transition-colors hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400">
+                    顯示更多作品
+                </button>
             </div>
         </div>
     </section>
@@ -212,7 +226,6 @@
             <h4 class="text-2xl font-bold mb-4">期待能有機會加入教學部的行列，跟上出發的腳步，一起到達</h4>
            <p class="mb-6">困難的經歷從未阻礙我的成長，更不會阻止我追求更好的自己。<br>身為一個天生的共感賦能者，能在對方開口前就能體察需要，並樂於成為支持他人成長與提供引導的力量，這份信念與特質，正是我在醫學教育與醫療行政路上持續前行的核心動力。</p>
             <div class="flex justify-center">
-                <!-- 加上 id="mail-trigger" -->
                 <div id="mail-trigger" class="inline-flex items-center gap-3 bg-white text-slate-800 rounded-full py-2 px-5 hover:bg-amber-100 transition-colors text-lg font-semibold cursor-pointer">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path></svg>
                     <span>a511h1@mail.chimei.org.tw</span>
@@ -220,7 +233,6 @@
             </div>
             <p class="mt-8 text-sm text-slate-400 flex items-center justify-center">
                 <span>&copy; 2025 HUANG,S.K.(A511H1) All Rights Reserved.</span>
-                <!-- AI Trigger with Tooltip -->
                 <span class="relative group">
                     <svg id="ai-trigger" class="w-6 h-6 ml-3 text-amber-400 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
                     <span class="absolute bottom-full mb-2 w-max px-3 py-1.5 bg-slate-800 text-white text-xs font-semibold rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-x-1/2 left-1/2 pointer-events-none">
@@ -233,7 +245,6 @@
     
     <div id="ai-modal-overlay" class="hidden opacity-0">
         <div id="ai-modal" class="transform scale-95">
-            <p class="text-sm text-green-600">// (你發現了彩蛋)//</p>
             <p class="text-sm text-green-600">// AI HEADHUNTER SYSTEM //</p>
             <p class="text-sm text-green-600">// STATUS: ANALYZING PROFILE...</p>
             <p class="text-sm text-green-600 mb-4">// TARGET: HUANG, SHENG-KAI</p>
@@ -249,62 +260,66 @@
         menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
         mobileMenuLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
 
-        // --- Easter Egg AI Modal Script (修改後) ---
+        // --- Easter Egg AI Modal Script ---
         const aiTrigger = document.getElementById('ai-trigger');
-        const mailTrigger = document.getElementById('mail-trigger'); // 新增：取得 MAIL 區塊
+        const mailTrigger = document.getElementById('mail-trigger');
         const aiOverlay = document.getElementById('ai-modal-overlay');
         const aiModal = document.getElementById('ai-modal');
         const aiReportContainer = document.getElementById('ai-report');
-
         const reportText = `[ANALYSIS COMPLETE]\n\n綜合評估：此人選展現出罕見的「數據洞察力」與「臨床共感力」的結合。\n\n[關鍵特質分析]\n\n> DATA FLUENCY:\n  精通 Power BI，能將複雜數據轉化為具體行動策略 (佐證：院內競賽獲獎)。此能力可直接應用於改善教學成效與資源配置。\n\n> EMPATHETIC INNOVATOR:\n  具備護理背景，能深刻理解臨床痛點，並主動以自動化工具改善流程，是連結教學部與臨床前線的最佳橋樑。\n\n> CROSS-FUNCTIONAL INTEGRATOR:\n  擁有偕同超過 30 個跨單位團隊的實務經驗，展現良好的溝通協作能力。\n\n[AI 結論]\n\n潛力評估：極高。\n與「教學行政管理員」職位契合度 > 92%。\n建議行動：【立即安排面談】`;
-
-        let typeWriterInterval; // 用於控制打字機動畫
-
+        let typeWriterInterval;
         function typeWriter(element, text) {
             let i = 0;
-            element.innerHTML = ''; // 清除先前的文字
-            element.style.borderRight = '.15em solid #10B981'; // 顯示游標
-            clearInterval(typeWriterInterval); // 停止任何先前的動畫
-            
+            element.innerHTML = '';
+            element.style.borderRight = '.15em solid #10B981';
+            clearInterval(typeWriterInterval);
             typeWriterInterval = setInterval(() => {
                 if (i < text.length) {
                     element.innerHTML += text.charAt(i);
                     i++;
                 } else {
                     clearInterval(typeWriterInterval);
-                    element.style.borderRight = 'none'; // 完成後隱藏游標
+                    element.style.borderRight = 'none';
                 }
             }, 25);
         }
-
-        // 將顯示彈窗的邏輯打包成一個函式
         function showAiModal() {
             aiOverlay.classList.remove('hidden');
             setTimeout(() => {
                 aiOverlay.classList.remove('opacity-0');
                 aiModal.classList.remove('scale-95');
-            }, 10); // 淡入與放大效果
+            }, 10);
             typeWriter(aiReportContainer, reportText);
         }
-
-        // 讓小燈泡點擊時呼叫 showAiModal
         aiTrigger.addEventListener('click', showAiModal);
-
-        // 新增：讓 MAIL 區塊點擊時也呼叫 showAiModal
         mailTrigger.addEventListener('click', showAiModal);
-
-        // 關閉彈窗的邏輯
         aiOverlay.addEventListener('click', (event) => {
-            // 如果點擊的是背景，而不是彈窗本身，就關閉它
             if (event.target === aiOverlay) {
                 aiOverlay.classList.add('opacity-0');
                 aiModal.classList.add('scale-95');
                 setTimeout(() => {
                     aiOverlay.classList.add('hidden');
-                    clearInterval(typeWriterInterval); // 如果提早關閉，就停止打字
-                }, 300); // 等待淡出動畫完成
+                    clearInterval(typeWriterInterval);
+                }, 300);
             }
         });
+
+        // --- Portfolio Toggle Script ---
+        const togglePortfolioBtn = document.getElementById('toggle-portfolio-btn');
+        const collapsibleCards = document.querySelectorAll('.collapsible-card');
+        let isPortfolioExpanded = false;
+
+        togglePortfolioBtn.addEventListener('click', () => {
+            isPortfolioExpanded = !isPortfolioExpanded; // 切換狀態
+
+            collapsibleCards.forEach(card => {
+                card.classList.toggle('hidden');
+            });
+
+            // 更新按鈕文字
+            togglePortfolioBtn.textContent = isPortfolioExpanded ? '收合部分作品' : '顯示更多作品';
+        });
+
     </script>
 
 </body>
