@@ -21,8 +21,9 @@
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
         }
+        /* --- 調整 H3 (section-title) 樣式：字體加大 --- */
         .section-title {
-            @apply text-4xl md:text-6xl font-extrabold text-slate-800 mb-12 text-center tracking-wide relative pb-4;
+            @apply text-5xl md:text-7xl font-extrabold text-slate-800 mb-12 text-center tracking-wide relative pb-4;
         }
         .section-title::after {
             content: '';
@@ -88,7 +89,6 @@
 </head>
 <body class="bg-slate-50 text-slate-600">
 
-    <!-- Header and Navigation -->
     <header class="bg-white shadow-sm sticky top-0 z-20">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-xl font-bold primary-text">我的履歷</h1>
@@ -97,7 +97,7 @@
                 <a href="#skills" class="hover:primary-text">核心技能</a>
                 <a href="#experience" class="hover:primary-text">專業經歷</a>
                 <a href="#honors" class="hover:primary-text">學歷與榮譽</a>
-                <a href="#portfolio" class="hover:primary-text">Power BI 作品集</a>
+                <a href="#portfolio" class="hover:primary-text">作品集</a>
             </nav>
             <button id="menu-btn" class="md:hidden block text-slate-800 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -110,11 +110,10 @@
             <a href="#skills" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">核心技能</a>
             <a href="#experience" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">專業經歷</a>
             <a href="#honors" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">學歷與榮譽</a>
-            <a href="#portfolio" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">Power BI 作品集</a>
+            <a href="#portfolio" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">作品集</a>
         </div>
     </header>
 
-    <!-- Main Hero Section -->
     <main class="container mx-auto px-6 py-16 md:py-24">
         <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
             <div class="flex-shrink-0">
@@ -127,7 +126,6 @@
         </div>
     </main>
 
-    <!-- About Me Section -->
     <section id="about" class="bg-white py-20 md:py-28">
         <div class="container mx-auto px-6 max-w-4xl">
             <h3 class="section-title">關於我</h3>
@@ -142,7 +140,6 @@
         </div>
     </section>
 
-    <!-- Core Skills Section -->
     <section id="skills" class="py-20 md:py-28">
         <div class="container mx-auto px-6">
             <h3 class="section-title">核心技能</h3>
@@ -173,7 +170,6 @@
         </div>
     </section>
 
-    <!-- Professional Experience Section -->
     <section id="experience" class="bg-white py-20 md:py-28">
         <div class="container mx-auto px-6">
             <h3 class="section-title">專業經歷</h3>
@@ -210,12 +206,10 @@
         </div>
     </section>
 
-    <!-- Education and Honors Section -->
     <section id="honors" class="py-20 md:py-28">
         <div class="container mx-auto px-6">
             <h3 class="section-title">學歷與榮譽</h3>
             <div class="max-w-4xl mx-auto">
-                <!-- Education -->
                 <div class="mb-16">
                     <h4 class="text-2xl font-bold text-slate-800 mb-6 text-center flex items-center justify-center gap-3">
                         <svg class="w-7 h-7 primary-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.25V15a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.75L23 9l-11-6zm-1 14H7v-2h4v2zm0-3H7v-2h4v2zm8-1.75L12 15l-7-3.25V9.9l7 3.85 7-3.85v2.35z"></path></svg>
@@ -229,7 +223,6 @@
                     </div>
                 </div>
 
-                <!-- Honors & Awards -->
                 <div>
                     <h4 class="text-2xl font-bold text-slate-800 mb-8 text-center flex items-center justify-center gap-3">
                         <svg class="w-7 h-7 primary-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -249,11 +242,21 @@
         </div>
     </section>
 
-    <!-- Power BI Portfolio Section -->
     <section id="portfolio" class="py-20 md:py-28 bg-white">
         <div class="container mx-auto px-6">
-            <h3 class="section-title">Power BI 作品集</h3>
+            <h3 class="section-title">作品集</h3>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card portfolio-card">
+                    <div class="aspect-video">
+                        <img class="w-full h-full object-cover" src="Certificate.png" alt="數位轉型 英文出生證明 專案縮圖">
+                    </div>
+                    <div class="p-6">
+                        <h5 class="font-bold text-lg text-slate-800 mb-2">數位轉型：英文出生證明申請</h5>
+                        <p class="text-sm mb-4">展示如何將紙本申請流程數位化，自動產出標準文件，提升行政效率。</p>
+                        <a href="https://forms.office.com/r/xCjaK49iCR" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors mr-2 hover:bg-amber-500">申請入口</a>
+                        <a href="Certificate.html" target="_blank" class="inline-block bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-slate-300">產出文件</a>
+                    </div>
+                </div>
                 <div class="card portfolio-card">
                     <div class="aspect-video">
                         <img class="w-full h-full object-cover" src="BI-1.png" alt="手術房間使用分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
@@ -271,12 +274,13 @@
                     <div class="p-6">
                         <h5 class="font-bold text-lg text-slate-800 mb-2">護理部人力<br>第一屆Power BI 指標視覺化 佳作</h5>
                         <p class="text-sm mb-4">分析護理單位人力分布，串接跨系統資料，作為多項分析的母本資料與評鑑介紹工具。</p>
+
                         <a href="https://reurl.cc/QaEgm5" target="_blank" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">查看作品</a>
                     </div>
                 </div>
                 <div class="card portfolio-card">
                     <div class="aspect-video">
-                        <img class="w-full h-full object-cover" src="BI-3.png" alt="護理部跌倒事件分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+                        <img class="w-full h-full object-cover" src="BI-3.png" alt="護理部跌倒事件分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失败';">
                     </div>
                     <div class="p-6">
                         <h5 class="font-bold text-lg text-slate-800 mb-2">護理部跌倒事件分析</h5>
@@ -315,7 +319,6 @@
                     </div>
                 </div>
                 
-                <!-- Hidden projects by default -->
                 <div class="card portfolio-card collapsible-card hidden">
                     <div class="aspect-video">
                         <img class="w-full h-full object-cover" src="BI-7.png" alt="護理部學術發表 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
@@ -367,7 +370,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Toggle Button -->
             <div class="mt-12 text-center">
                 <button id="toggle-portfolio-btn" class="accent-bg text-white font-semibold px-6 py-3 rounded-lg transition-colors hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400">
                     顯示更多作品
@@ -376,7 +378,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer id="page-footer" class="text-white py-12" style="background-color: var(--primary-color);">
         <div class="container mx-auto px-6 text-center">
             <h4 class="text-2xl font-bold mb-4">期待能有機會加入教學部的行列，跟上出發的腳步，一起到達</h4>
@@ -396,14 +397,12 @@
                     </span>
                 </span>
             </p>
-            <!-- === 新增：彩蛋提示文字 === -->
             <p id="easter-egg-hint" class="hidden text-center mt-4 text-amber-300 font-semibold">
                 ↓ 您發現了一個秘密，請繼續往下探索 ↓
             </p>
         </div>
     </footer>
     
-    <!-- AI Easter Egg Modal -->
     <div id="ai-modal-overlay" class="hidden opacity-0">
         <div id="ai-modal" class="transform opacity-0 scale-95 -translate-y-4">
             <p class="text-sm text-green-600">// AI HEADHUNTER SYSTEM //</p>
