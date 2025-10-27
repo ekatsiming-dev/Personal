@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Certificate of Birth</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .certificate-container {
+      width: 210mm; /* A4 寬度 */
+      max-width: 210mm;
+      margin: auto;
+      padding: 20mm;
+      border: 2px solid black;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin: 0;
+    }
+
+    h2 {
+      text-decoration: underline;
+      margin-bottom: 0px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .readonly {
+      border: none;
+      background-color: transparent;
+      font-size: 1em;
+      width: 100%;
+      height: 30px; /* 調高高度 */
+      line-height: 30px; /* 垂直置中 */
+      padding: 5px; /* 增加內距 */
+    }
+
+    textarea.readonly {
+      resize: none;
+      height: 60px; 
+      font-size: 1em;
+      padding: 0px;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .page-break {
+      break-before: page;
+      page-break-before: always;
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .certificate-container {
+        width: 100%;
+        max-width: none;
+        height: auto;
+        margin: 0;
+        padding: 10mm;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+
+      table, tr, td {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      input, textarea {
+        border: none !important;
+        background: transparent !important;
+      }
+
+      .page-break {
+        break-before: page;
+        page-break-before: always;
+      }
+
+      button.print-button {
+        display: none;
+      } 
+    }
+  </style>
+</head>
+<body>
+  <div class="certificate-container">
+    <h1>CERTIFICATE OF BIRTH</h1>
+    <h2>CHI MEI MEDICAL CENTER</h2>
+
+    <table>
+      <tr>
+        <td colspan="2">Full Name of Birth
+
+          <input class="readonly" type="text" name="name_of_birth" value="BABY H">
+        </td>
+   
+<td colspan="2">Sex
+
+          <input class="readonly" type="text" name="sex" value="FEMALE">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">Date of Birth
+
+          <input class="readonly" type="date" name="date_of_birth"  value="2025-10-03">
+        </td>
+        <td colspan="2">Time of Birth
+
+          <input class="readonly" type="text" name="Time of Birth" value="06:32">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">Full Name of Mother
+
+          <input class="readonly" type="text" name="name_of_Mother" value="Mom">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">Full Name of Father
+
+          <input class="readonly" type="text" name="name_of_Father" value="Dad">
+        </td>
+      </tr>
+
+<tr>
+  <td colspan="4">Registered Permanent Residence Address
+<textarea class="readonly" name="address">a511h1@mail.chimei.org.tw</textarea>
+</td>
+</tr>
+
+<tr>
+        <td colspan="4">Signature of Attending Physician
+
+
+<input class="readonly" type="text" name="physician_signature" value="____________________________________________________________________"></td>
+</tr>
+
+
+      <tr>
+        <td colspan="4">Director of the Hospital / Official Seal
+
+<textarea class="readonly" name="SEAL"></textarea>
+
+
+
+</td>
+      </tr>
+<tr>
+      <td colspan="4">Date Issued 
+         <input class="readonly" type="date" name="date_issued" value=""></td>
+</tr>
+    </table>
+
+    <div class="footer">
+      <p>THIS IS TO CERTIFY THAT THE ABOVE STATEMENT IS TRUE.</p>
+      <p>NAME OF HOSPITAL: CHI MEI MEDICAL CENTER</p>
+      <p>MEDICAL CARE INSTITUTION CODE: 1141310019</p>
+      <p>ADDRESS OF HOSPITAL: NO. 901, ZHONGHUA RD., YONGKANG DIST., TAINAN CITY 710402, TAIWAN (R.O.C.)</p>
+    </div>
+
+<div class="page-break">
+  <h2>英文出生證明 (OTP：30814
+)</h2>
+
+  <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+    <tr><th>項目</th><th>內容</th></tr>
+    <tr><td>流水編</td><td><input class="readonly" type="text" name="Document No." value=""></td></tr>
+    <tr><td>母親病歷號</td><td><input class="readonly" type="text" name="Mother char No." value=""></td></tr>
+    <tr><td>申請時間</td><td>10/27/2025 2:06:31 AM</td></tr>
+    <tr><td>出生發生日於5年內</td><td>YES ()</td></tr>
+    <tr><td>母親身分證字號</td><td>G123456455</td></tr>
+    <tr><td>母親姓名</td><td>Mom</td></tr>
+    <tr><td>出生日期</td><td>2025-10-03</td></tr>
+    <tr><td>聯絡人</td><td>陳先生</td></tr>
+    <tr><td>關係</td><td>爺爺</td></tr>
+    <tr><td>電話</td><td>02-2812811</td></tr>
+    <tr><td>Email</td><td>a511h1@mail.chimei.org.tw</td></tr>
+    <tr><td>份數</td><td>3</td></tr>
+  </table>
+
+  <h3>繳費狀態</h3>
+  <label><input type="checkbox" name="paymentStatus" value="paid"> 收款</label>
+  <label><input type="checkbox" name="paymentStatus" value="unpaid"> 未收款</label>
+
+  <h3>檢附文件確認</h3>
+  <label><input type="checkbox" name="docConfirm" value="chineseCert"> 中文證明</label>
+  <label><input type="checkbox" name="docConfirm" value="parentID"> 父母親證件</label>
+
+  <h3>取件資訊</h3>
+  <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+    <tr><td>通訊備註</td><td></td></tr>
+    <tr><td>取件日</td><td></td></tr>
+    <tr><td>取件簽名</td><td></td></tr>
+  </table>
+</div>
+
+  </div>
+   <!-- 列印按鈕 -->
+  <div style="text-align: center; margin: 20px;">
+    <button class="print-button" onclick="window.print()" style="padding: 10px 20px; font-size: 16px;">
+     預覽列印
+    </button>
+  </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector('input[name="date_issued"]').value = new Date().toISOString().split('T')[0];
+  });
+</script>
+
+</body>
+</html>
