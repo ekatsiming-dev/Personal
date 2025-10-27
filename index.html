@@ -242,7 +242,7 @@
         </div>
     </section>
 
-<!-- --- v2.1.3 作品集 --- -->
+<!-- --- v2.1.4 作品集 --- -->
 <section id="portfolio" class="py-20 md:py-28 bg-white">
     <div class="container mx-auto px-6">
         <h3 class="section-title">作品集</h3>
@@ -258,7 +258,8 @@
                 <div class="p-6">
                     <h5 class="font-bold text-lg text-slate-800 mb-2">自製網頁：好好吃果園</h5>
                     <p class="text-sm mb-4">以JIT為靈感，以Gemini Canvas、GOOGLE SHHETS、APP SCRIPT等工具所製成之遊戲式正向留言板</p>
-                    <a href="https://ekatsiming-dev.github.io/apple/dashboard.html" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors mr-2 hover:bg-amber-500">果園入口</a>
+                    <!-- 清理：移除單顆按鈕不需要的 mr-2 -->
+                    <a href="https://ekatsiming-dev.github.io/apple/dashboard.html" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-amber-500">果園入口</a>
                 </div>
             </div>
             
@@ -270,7 +271,8 @@
                 <div class="p-6">
                     <h5 class="font-bold text-lg text-slate-800 mb-2">自製網頁：野澤滑雪指南</h5>
                     <p class="text-sm mb-4">以Gemini Canvas功能整合交通、時程、預算、景點等旅遊資訊之應用</p>
-                    <a href="https://ekatsiming-dev.github.io/SKI/" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors mr-2 hover:bg-amber-500">旅遊指南</a>
+                    <!-- 清理：移除單顆按鈕不需要的 mr-2 -->
+                    <a href="https://ekatsiming-dev.github.io/SKI/" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-amber-500">旅遊指南</a>
                 </div>
             </div>
             
@@ -286,15 +288,15 @@
                     
                     <!-- 
                       改善：
-                      1. 使用 flex 容器來確保按鈕水平排列。
-                      2. 'flex-wrap' 允許在極端狹窄的螢幕換行 (安全機制)。
-                      3. 'gap-2' 統一按鈕間距 (取代 mr-2)。
-                      4. 'text-sm' 縮小按鈕文字，使其在手機上更容易排列。
+                      1. 移除 'text-sm'，讓字體大小與其他卡片一致。
+                      2. 容器改回 'flex-wrap'，允許自然換行。
+                      3. 按鈕在手機(預設) 'w-full' 垂直堆疊。
+                      4. 在桌面(sm) 'sm:w-auto' 恢復內容寬度，與其他卡片按鈕風格一致。
                     -->
                     <div class="flex flex-wrap gap-2">
-                        <a href="Certificate.pdf" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors text-sm hover:bg-amber-500">專案說明</a>
-                        <a href="https://forms.office.com/r/xCjaK49iCR" target="_blank" class="inline-block bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg transition-colors text-sm hover:bg-slate-300">申請入口</a>
-                        <a href="Certificate.html" target="_blank" class="inline-block bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg transition-colors text-sm hover:bg-slate-300">產出樣本</a>
+                        <a href="Certificate.pdf" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-amber-500 w-full sm:w-auto text-center">專案說明</a>
+                        <a href="https://forms.office.com/r/xCjaK49iCR" target="_blank" class="inline-block bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-slate-300 w-full sm:w-auto text-center">申請入口</a>
+                        <a href="Certificate.html" target="_blank" class="inline-block bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-slate-300 w-full sm:w-auto text-center">產出樣本</a>
                     </div>
                 </div>
             </div>
@@ -449,6 +451,9 @@
     </div>
 </section>
 <!-- --- 作品集 結束 --- -->
+
+
+
 
 
 
