@@ -283,9 +283,19 @@
                 <div class="p-6">
                     <h5 class="font-bold text-lg text-slate-800 mb-2">數位轉型：英文出生證明申請</h5>
                     <p class="text-sm mb-4">以O365 Forms、Power Automate工具轉換成格式化文件，將紙本申請流程數位化，自動產出標準文件，提升行政效率。</p>
-                    <a href="Certificate.pdf" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors mr-2 hover:bg-amber-500">專案說明</a>
-                    <a href="https://forms.office.com/r/xCjaK49iCR" target="_blank" class="inline-block bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-slate-300 mr-2">申請入口</a>
-                    <a href="Certificate.html" target="_blank" class="inline-block bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-slate-300">產出樣本</a>
+                    
+                    <!-- 
+                      改善：
+                      1. 使用 flex 容器來確保按鈕水平排列。
+                      2. 'flex-wrap' 允許在極端狹窄的螢幕換行 (安全機制)。
+                      3. 'gap-2' 統一按鈕間距 (取代 mr-2)。
+                      4. 'text-sm' 縮小按鈕文字，使其在手機上更容易排列。
+                    -->
+                    <div class="flex flex-wrap gap-2">
+                        <a href="Certificate.pdf" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors text-sm hover:bg-amber-500">專案說明</a>
+                        <a href="https://forms.office.com/r/xCjaK49iCR" target="_blank" class="inline-block bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg transition-colors text-sm hover:bg-slate-300">申請入口</a>
+                        <a href="Certificate.html" target="_blank" class="inline-block bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg transition-colors text-sm hover:bg-slate-300">產出樣本</a>
+                    </div>
                 </div>
             </div>
             
