@@ -50,28 +50,6 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 .timeline-dot { background-color: var(--primary-color); }
 .timeline-border { border-color: var(--primary-color); }
 
-/* --- 彩蛋 AI 彈窗樣式 --- */
-#ai-modal-overlay {
-  @apply fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300 ease-out;
-}
-#ai-modal {
-  @apply bg-gray-900 text-green-400 font-mono p-6 rounded-lg shadow-2xl max-w-2xl w-11/12 border border-green-700;
-  @apply transition-all duration-300 ease-out;
-}
-.typewriter {
-  white-space: pre-wrap;
-  overflow: hidden;
-  border-right: .15em solid #10B981;
-}
-
-@keyframes restless-glow {
-  0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 2px rgba(252, 163, 17, 0.2)); }
-  25% { transform: scale(1.1) rotate(-3deg); }
-  50% { transform: scale(1.15) rotate(0deg); filter: drop-shadow(0 0 8px rgba(252, 163, 17, 0.8)); }
-  75% { transform: scale(1.1) rotate(3deg); }
-}
-#ai-trigger { animation: restless-glow 2s infinite ease-in-out; }
-
 .portfolio-card { transition: all 0.5s ease-in-out; }
 </style>
 </head>
@@ -108,7 +86,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
       <img src="ME.png" alt="個人肖像" class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 shadow-lg" style="border-color: var(--primary-color);" onerror="this.onerror=null;this.src='https://placehold.co/224x224/003566/ffffff?text=頭像'">
     </div>
     <div class="text-center md:text-left">
-      <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4">從醫療專業行政，走向風險評估與核保</h2>
+      <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4">從醫療到核保</h2>
       <p class="text-xl md:text-2xl font-semibold" style="color: var(--primary-color);">黃聖凱</p>
 
       <div class="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
@@ -340,7 +318,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
         </div>
       </div>
 
-      <div class="card portfolio-card collapsible-card hidden">
+      <div class="card portfolio-card">
         <div class="aspect-video">
           <img class="w-full h-full object-cover" src="BI-4.png" alt="護理部準時下班率 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
@@ -436,35 +414,17 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
     <h4 class="text-2xl font-bold mb-4">期待將醫療專業轉化為核保理賠的風險洞察力</h4>
     <p class="mb-6">期望結合醫療專業背景、風險評估思維及分析能力，投入保險核保領域發展，協助進行風險評估、案件審查及核保決策，創造兼顧專業與效率的服務價值。</p>
     <div class="flex flex-col items-center gap-3">
-      <div id="mail-trigger" class="inline-flex items-center gap-3 bg-white text-slate-800 rounded-full py-2 px-5 hover:bg-amber-100 transition-colors text-lg font-semibold cursor-pointer">
+      <a href="mailto:ekatsiming@hotmail.com" class="inline-flex items-center gap-3 bg-white text-slate-800 rounded-full py-2 px-5 hover:bg-amber-100 transition-colors text-lg font-semibold">
         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path></svg>
         <span>ekatsiming@hotmail.com</span>
-      </div>
+      </a>
     </div>
 
-    <p class="mt-8 text-sm text-slate-400 flex items-center justify-center">
-      <span>&copy; 此頁面隱藏了一個彩蛋，你找到了嗎？<br>2025 HUANG,S.K.(A511H1) All Rights Reserved.</span>
-      <span class="relative group">
-        <svg id="ai-trigger" class="w-6 h-6 ml-3 text-amber-400 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
-        <span class="absolute bottom-full mb-2 w-max px-3 py-1.5 bg-slate-800 text-white text-xs font-semibold rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-x-1/2 left-1/2 pointer-events-none">
-          咦？這是什麼？
-        </span>
-      </span>
-    </p>
-    <p id="easter-egg-hint" class="hidden text-center mt-4 text-amber-300 font-semibold">
-      ↓ 您發現了一個秘密，請繼續往下探索 ↓
+    <p class="mt-8 text-sm text-slate-400 text-center">
+      &copy; 2025 HUANG,S.K.(A511H1) All Rights Reserved.
     </p>
   </div>
 </footer>
-
-<div id="ai-modal-overlay" class="hidden opacity-0">
-  <div id="ai-modal" class="transform opacity-0 scale-95 -translate-y-4">
-    <p class="text-sm text-green-600">// AI HEADHUNTER SYSTEM //</p>
-    <p class="text-sm text-green-600">// STATUS: ANALYZING PROFILE...</p>
-    <p class="text-sm text-green-600 mb-4">// TARGET: HUANG, SHENG-KAI</p>
-    <div id="ai-report" class="typewriter"></div>
-  </div>
-</div>
 
 <script>
 // --- Standard Menu Script ---
@@ -473,62 +433,6 @@ const mobileMenu = document.getElementById('mobile-menu');
 const mobileMenuLinks = mobileMenu.querySelectorAll('a');
 menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
 mobileMenuLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
-
-// --- Easter Egg AI Modal Script ---
-const aiTrigger = document.getElementById('ai-trigger');
-const mailTrigger = document.getElementById('mail-trigger');
-const aiOverlay = document.getElementById('ai-modal-overlay');
-const aiModal = document.getElementById('ai-modal');
-const aiReportContainer = document.getElementById('ai-report');
-const easterEggHint = document.getElementById('easter-egg-hint');
-
-const reportText = `[ANALYSIS COMPLETE]\n\n綜合評估：此人選展現出罕見的「風險辨識力」與「醫療專業判讀力」的結合。\n\n[關鍵特質分析]\n\n> DATA FLUENCY:\n 精通 Power BI，能將複雜數據轉化為具體行動策略（佐證：院內競賽獲獎）。此能力可直接應用於核保案件審查與風險評估。\n\n> RISK-AWARE CLINICIAN:\n 具備12年護理與醫療行政背景，熟悉病歷判讀、診斷邏輯與醫療流程，能精準辨識醫療文件中的異常與風險。\n\n> PROCESS OPTIMIZER:\n 善用數位工具與AI改善行政流程，降低錯誤率，展現高度的系統化思維與執行力。\n\n[AI 結論]\n\n潛力評估：極高。\n與「核保人員」職位契合度 > 94%。\n建議行動：【立即安排面談】`;
-
-let typeWriterInterval;
-function typeWriter(element, text) {
-  let i = 0;
-  element.innerHTML = '';
-  element.style.borderRight = '.15em solid #10B981';
-  clearInterval(typeWriterInterval);
-  typeWriterInterval = setInterval(() => {
-    if (i < text.length) {
-      element.innerHTML += text.charAt(i);
-      i++;
-    } else {
-      clearInterval(typeWriterInterval);
-      element.style.borderRight = 'none';
-    }
-  }, 25);
-}
-
-function triggerEasterEgg() {
-  if (easterEggHint) { easterEggHint.classList.remove('hidden'); }
-  aiOverlay.classList.remove('hidden');
-  setTimeout(() => {
-    aiOverlay.classList.remove('opacity-0');
-    aiModal.classList.remove('opacity-0');
-    aiModal.classList.remove('scale-95');
-    aiModal.classList.remove('-translate-y-4');
-    typeWriter(aiReportContainer, reportText);
-  }, 20);
-}
-
-aiTrigger.addEventListener('click', triggerEasterEgg);
-mailTrigger.addEventListener('click', triggerEasterEgg);
-
-aiOverlay.addEventListener('click', (event) => {
-  if (event.target === aiOverlay) {
-    aiOverlay.classList.add('opacity-0');
-    aiModal.classList.add('opacity-0');
-    aiModal.classList.add('scale-95');
-    aiModal.classList.add('-translate-y-4');
-    setTimeout(() => {
-      aiOverlay.classList.add('hidden');
-      clearInterval(typeWriterInterval);
-      if (easterEggHint) { easterEggHint.classList.add('hidden'); }
-    }, 300);
-  }
-});
 
 // --- Portfolio Toggle Script ---
 const togglePortfolioBtn = document.getElementById('toggle-portfolio-btn');
