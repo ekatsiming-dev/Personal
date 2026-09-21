@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>個人履歷 - 黃聖凱｜核保理賠專業</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary-color: #003566;
+  --accent-color: #fca311;
+  --highlight-bg: #fef9c3;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
+
+.section-title {
+  @apply text-5xl md:text-7xl font-extrabold text-slate-800 mb-12 text-center tracking-wide relative pb-4;
+}
+.section-title::after {
+  content: '';
+  @apply absolute bottom-0 left-1/2 w-24 h-1 rounded-full;
+  background-color: var(--primary-color);
+  transform: translateX(-50%);
+}
+.card {
+  @apply bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl;
+}
+.highlight {
+  background-color: var(--highlight-bg);
+  color: var(--primary-color);
+  @apply font-bold py-1 px-2 rounded;
+}
+.badge {
+  @apply inline-block bg-slate-100 text-sm font-medium px-4 py-2 rounded-full;
+  color: var(--primary-color);
+}
+.tag-pill {
+  @apply inline-block text-xs md:text-sm font-semibold px-3 py-1.5 rounded-full border;
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  background-color: #fff;
+}
+.primary-text { color: var(--primary-color); }
+.accent-bg { background-color: var(--accent-color); }
+.accent-bg:hover { background-color: #fbbf24; }
+.timeline-dot { background-color: var(--primary-color); }
+.timeline-border { border-color: var(--primary-color); }
+
+/* --- 彩蛋 AI 彈窗樣式 --- */
+#ai-modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 transition-opacity duration-300 ease-out;
+}
+#ai-modal {
+  @apply bg-gray-900 text-green-400 font-mono p-6 rounded-lg shadow-2xl max-w-2xl w-11/12 border border-green-700;
+  @apply transition-all duration-300 ease-out;
+}
+.typewriter {
+  white-space: pre-wrap;
+  overflow: hidden;
+  border-right: .15em solid #10B981;
+}
+
+@keyframes restless-glow {
+  0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 2px rgba(252, 163, 17, 0.2)); }
+  25% { transform: scale(1.1) rotate(-3deg); }
+  50% { transform: scale(1.15) rotate(0deg); filter: drop-shadow(0 0 8px rgba(252, 163, 17, 0.8)); }
+  75% { transform: scale(1.1) rotate(3deg); }
+}
+#ai-trigger { animation: restless-glow 2s infinite ease-in-out; }
+
+.portfolio-card { transition: all 0.5s ease-in-out; }
+
+/* --- 圖片放大燈箱樣式 --- */
+#img-lightbox-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-85 z-50 items-center justify-center p-4;
+  cursor: zoom-out;
+}
+#img-lightbox-overlay.hidden { display: none; }
+#img-lightbox-overlay:not(.hidden) { display: flex; }
+.bi-thumb { cursor: zoom-in; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-600">
+
+<header class="bg-white shadow-sm sticky top-0 z-20">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold primary-text">我的履歷</h1>
+    <nav class="hidden md:flex space-x-6">
+      <a href="#about" class="hover:primary-text">關於我</a>
+      <a href="#skills" class="hover:primary-text">核心技能</a>
+      <a href="#experience" class="hover:primary-text">專業經歷</a>
+      <a href="#honors" class="hover:primary-text">學歷與證照</a>
+      <a href="#portfolio" class="hover:primary-text">作品集</a>
+    </nav>
+    <button id="menu-btn" class="md:hidden block text-slate-800 focus:outline-none">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+      </svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+    <a href="#about" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">關於我</a>
+    <a href="#skills" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">核心技能</a>
+    <a href="#experience" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">專業經歷</a>
+    <a href="#honors" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">學歷與證照</a>
+    <a href="#portfolio" class="block py-3 px-6 text-sm hover:bg-slate-100 hover:primary-text">作品集</a>
+  </div>
+</header>
+
+<main class="container mx-auto px-6 py-16 md:py-24">
+  <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+    <div class="flex-shrink-0">
+      <img src="ME.png" alt="個人肖像" class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 shadow-lg" style="border-color: var(--primary-color);" onerror="this.onerror=null;this.src='https://placehold.co/224x224/003566/ffffff?text=頭像'">
+    </div>
+    <div class="text-center md:text-left">
+      <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4">你好，我是黃聖凱</h2>
+      <p class="text-xl md:text-2xl font-semibold" style="color: var(--primary-color);">12年醫療專業 × 風險評估與核保理賠人才</p>
+
+      <div class="mt-6">
+        <span class="highlight text-base md:text-lg">預計於九月人身保險核保理賠資格應試</span>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+        <span class="badge">5年臨床照護｜新生兒・病嬰・成人心臟重症</span>
+        <span class="badge">8年醫療行政｜病歷判讀・診斷邏輯・醫療流程</span>
+        <span class="badge">希望職稱｜核保人員</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section id="about" class="bg-white py-20 md:py-28">
+  <div class="container mx-auto px-6 max-w-4xl">
+    <h3 class="section-title">關於我</h3>
+    <div class="text-lg space-y-6 text-slate-700 leading-relaxed">
+      <p>畢業於高雄醫學大學護理學系，具備<span class="highlight">12年臨床照護及醫療行政實務經驗</span>，熟悉醫療流程、病歷資料及診斷文件判讀，個性負責任，與團隊協作配合度高。</p>
+      <p>過往工作中，我曾負責重大傷病案件與相關醫療文件審查，累積資料驗證、<span class="highlight">風險辨識</span>及問題分析能力，並參與教育訓練管理、專案推動及流程改善工作，具備跨部門協調溝通與資訊整合經驗。</p>
+      <p>工作上我重視系統化思考與細節管理，善於透過數據分析及數位工具提升作業效率與品質。</p>
+      <p>期望結合醫療專業背景、<span class="highlight">風險評估思維</span>及分析能力，投入保險<span class="highlight">核保領域</span>發展，協助進行風險評估、案件審查及核保決策，創造兼顧專業與效率的服務價值。</p>
+    </div>
+    <div class="mt-10 flex flex-wrap gap-2 justify-center">
+      <span class="tag-pill">#系統化思維</span>
+      <span class="tag-pill">#風險評估與控管能力</span>
+      <span class="tag-pill">#醫療資訊判讀能力</span>
+      <span class="tag-pill">#數據分析與邏輯判斷</span>
+      <span class="tag-pill">#數位工具應用能力</span>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="py-20 md:py-28">
+  <div class="container mx-auto px-6">
+    <h3 class="section-title">核心技能</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="card p-6 text-center">
+        <div class="mb-4"><svg class="w-16 h-16 mx-auto primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+        <h4 class="font-bold text-xl text-slate-800 mb-2">風險審查與判讀能力</h4>
+        <p class="text-sm">醫療文件與診斷資料判讀、資料異常辨識與邏輯核核、醫療流程理解與風險控管，重視合規性。</p>
+      </div>
+      <div class="card p-6 text-center">
+        <div class="mb-4"><svg class="w-16 h-16 mx-auto primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg></div>
+        <h4 class="font-bold text-xl text-slate-800 mb-2">數據分析與工具應用能力</h4>
+        <p class="text-sm">Office（樞紐分析、標準化格式、VBA）、Power BI（數據分析、指標建構），善用 GAS 與 Gemini/Claude/ChatGPT 等 AI 工具。</p>
+      </div>
+      <div class="card p-6 text-center">
+        <div class="mb-4"><svg class="w-16 h-16 mx-auto primary-text" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
+        <h4 class="font-bold text-xl text-slate-800 mb-2">醫療行政與核保審查經驗</h4>
+        <p class="text-sm">8年醫療行政資歷，覆核重大傷病申請案件、判讀診斷書與醫療文件、檢核醫療費用與出院結帳資料正確性，確保資料合規。</p>
+      </div>
+      <div class="card p-6 text-center">
+        <div class="mb-4"><svg class="w-16 h-16 mx-auto primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 011-1h1a2 2 0 100-4H7a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path></svg></div>
+        <h4 class="font-bold text-xl text-slate-800 mb-2">臨床照護與風險評估基礎</h4>
+        <p class="text-sm">5年新生兒、病嬰、成人心臟重症臨床照護經驗，理解診斷、治療與預後邏輯，奠定風險評估基礎。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="bg-white py-20 md:py-28">
+  <div class="container mx-auto px-6">
+    <h3 class="section-title">專業經歷</h3>
+    <div class="max-w-4xl mx-auto">
+
+      <div class="relative pl-8 sm:pl-10 py-6 border-l-2 border-slate-300">
+        <div class="absolute -left-3.5 top-5 w-6 h-6 bg-slate-400 rounded-full border-4 border-white"></div>
+        <p class="text-sm text-slate-500">2016/07 - 2019/02｜2年8個月</p>
+        <h4 class="text-xl font-bold text-slate-800 mt-1">護理師｜奇美醫療財團法人奇美醫院</h4>
+        <ul class="list-disc list-inside space-y-2 text-sm mt-3">
+          <li>熟悉臨床照護流程與疾病發展，具病歷判讀能力</li>
+          <li>理解診斷、治療與預後邏輯，奠定風險評估基礎</li>
+          <li>具備高壓環境下的細節控管與責任執行能力</li>
+        </ul>
+      </div>
+
+      <div class="relative pl-8 sm:pl-10 py-6 border-l-2 timeline-border">
+        <div class="absolute -left-3.5 top-5 w-6 h-6 timeline-dot rounded-full border-4 border-white"></div>
+        <p class="text-sm text-slate-500">2019/03 - 2026/06｜7年4個月</p>
+        <h4 class="text-xl font-bold text-slate-800 mt-1">行政管理員｜奇美醫療財團法人奇美醫院</h4>
+        <p class="mt-2 mb-4 text-slate-600">從護理臨床轉任醫療行政，負責醫學教育訓練、住院醫師甄選、醫務管理等業務，並持續運用數位工具改善行政流程。</p>
+
+        <p class="font-semibold text-slate-800 mt-4">核心經歷</p>
+        <ul class="list-disc list-inside space-y-2 text-sm mt-2">
+          <li>2020-2023 COVID-19疫情防治與因應</li>
+          <li>2019-2023 醫學教育訓練辦理與確保流程合規，並協助機構通過教學醫院評鑑優等</li>
+          <li>2026 PGY住院醫師甄選會辦理（97%滿意度、100%招收率）</li>
+        </ul>
+
+        <p class="font-semibold text-slate-800 mt-4">數位賦能</p>
+        <ul class="list-disc list-inside space-y-2 text-sm mt-2">
+          <li>運用可視化數據工具（Power BI）建立人力資源、教育訓練、醫療事務、病安品質分析報表</li>
+          <li>運用數位工具與AI改善行政流程並降低錯誤率，並推動部門數位轉型</li>
+        </ul>
+
+        <p class="font-semibold text-slate-800 mt-4">醫務行政</p>
+        <ul class="list-disc list-inside space-y-2 text-sm mt-2">
+          <li>覆核重大傷病申請案件，確保資料合規</li>
+          <li>判讀診斷書與醫療文件，辨識資料異常與風險</li>
+          <li>檢核醫療費用與出院結帳資料正確性</li>
+          <li>協調住院流程與床位配置與流程控管</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="honors" class="py-20 md:py-28">
+  <div class="container mx-auto px-6">
+    <h3 class="section-title">學歷與證照</h3>
+    <div class="max-w-4xl mx-auto">
+
+      <div class="mb-16">
+        <h4 class="text-2xl font-bold text-slate-800 mb-6 text-center flex items-center justify-center gap-3">
+          <svg class="w-7 h-7 primary-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.25V15a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.75L23 9l-11-6zm-1 14H7v-2h4v2zm0-3H7v-2h4v2zm8-1.75L12 15l-7-3.25V9.9l7 3.85 7-3.85v2.35z"></path></svg>
+          <span>學歷</span>
+        </h4>
+        <div class="bg-white rounded-lg shadow-sm p-6 text-center max-w-sm mx-auto border-t-4" style="border-color: var(--primary-color);">
+          <p class="text-xl font-semibold text-slate-800">高雄醫學大學 護理學系</p>
+          <p class="text-slate-500 mt-1">2009/9 - 2013/6｜大學畢業</p>
+        </div>
+      </div>
+
+      <div class="mb-16">
+        <h4 class="text-2xl font-bold text-slate-800 mb-8 text-center flex items-center justify-center gap-3">
+          <svg class="w-7 h-7 primary-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" /></svg>
+          <span>資格認證</span>
+        </h4>
+        <div class="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+          <div class="bg-white rounded-lg shadow-sm p-5 border-l-4" style="border-color: var(--primary-color);">
+            <p class="font-semibold text-slate-800">高考護理師執照</p>
+            <p class="text-sm text-slate-500 mt-1">考試院</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-sm p-5 border-l-4" style="border-color: var(--primary-color);">
+            <p class="font-semibold text-slate-800">CPR證照</p>
+            <p class="text-sm text-slate-500 mt-1">中華民國紅十字會</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-sm p-5 border-l-4" style="border-color: var(--primary-color);">
+            <p class="font-semibold text-slate-800">GEPT 全民英檢中級</p>
+            <p class="text-sm text-slate-500 mt-1">LTTC財團法人語言訓練測驗中心</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-sm p-5 border-l-4" style="border-color: var(--primary-color);">
+            <p class="font-semibold text-slate-800">Gemini Certified Educator</p>
+            <p class="text-sm text-slate-500 mt-1">更多資格認證</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-2xl font-bold text-slate-800 mb-8 text-center flex items-center justify-center gap-3">
+          <svg class="w-7 h-7 primary-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56L2 18.93 3.41 20.34 9 14.75l3.02 3.02-.46 1.34-1.1-1.1-1.41 1.41 3.5 3.5 1.41-1.41-1.02-1.02.83-2.44 5.16 5.16 1.41-1.41-7-7zM18.5 10l-4.5 12h2l1.12-3h4.75L23 22h2l-4.5-12h-2zm.5 7l1.5-4 1.5 4h-3z"/></svg>
+          <span>語言能力</span>
+        </h4>
+        <div class="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-center">
+          <div class="bg-white rounded-lg shadow-sm p-5">
+            <p class="font-semibold text-slate-800">中文</p>
+            <p class="text-sm text-slate-500 mt-1">聽/說/讀/寫：精通</p>
+          </div>
+          <div class="bg-white rounded-lg shadow-sm p-5">
+            <p class="font-semibold text-slate-800">英文</p>
+            <p class="text-sm text-slate-500 mt-1">聽/說/讀/寫：中等</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- --- 作品集 --- -->
+<section id="portfolio" class="py-20 md:py-28 bg-white">
+  <div class="container mx-auto px-6">
+    <h3 class="section-title">作品集</h3>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <div class="card portfolio-card">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover" src="apple-hiro.png" alt="自製網頁：好好吃果園 專案縮圖">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">自製網頁：好好吃果園</h5>
+          <p class="text-sm mb-4">以JIT為靈感，以Gemini Canvas、Google Sheets、App Script等工具所製成之遊戲式正向留言板</p>
+          <a href="https://ekatsiming-dev.github.io/apple/dashboard.html" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-amber-500">果園入口</a>
+        </div>
+      </div>
+
+      <div class="card portfolio-card">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover" src="jp.webp" alt="自製網頁：野澤滑雪指南">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">自製網頁：野澤滑雪指南</h5>
+          <p class="text-sm mb-4">以Gemini Canvas功能整合交通、時程、預算、景點等旅遊資訊之應用</p>
+          <a href="https://ekatsiming-dev.github.io/SKI/" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-amber-500">旅遊指南</a>
+        </div>
+      </div>
+
+      <div class="card portfolio-card">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover" src="Certifate.png" alt="數位轉型 英文出生證明 專案縮圖">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">數位轉型：英文出生證明申請</h5>
+          <p class="text-sm mb-4">以O365 Forms、Power Automate工具轉換成格式化文件，將紙本申請流程數位化，自動產出標準文件，提升行政效率。</p>
+          <div class="flex flex-wrap gap-2">
+            <a href="Certificate.pdf" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-amber-500 w-full sm:w-auto text-center">專案說明</a>
+            <a href="https://forms.office.com/r/xCjaK49iCR" target="_blank" class="inline-block bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-slate-300 w-full sm:w-auto text-center">申請入口</a>
+            <a href="Certificate.html" target="_blank" class="inline-block bg-slate-200 text-slate-700 font-semibold px-4 py-2 rounded-lg transition-colors hover:bg-slate-300 w-full sm:w-auto text-center">產出樣本</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card portfolio-card">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover bi-thumb" src="BI-1.png" alt="手術房間使用分析 專案縮圖" onclick="openImageLightbox('BI-1.png','手術房間使用分析｜第二屆Power BI 指標視覺化 銀獎')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">手術房間使用分析<br>第二屆Power BI 指標視覺化 銀獎</h5>
+          <p class="text-sm mb-4">分析手術室使用率、麻醉方式、術式手術量與趨勢，作為管理者資源分配依據。</p>
+          <button type="button" onclick="openImageLightbox('BI-1.png','手術房間使用分析｜第二屆Power BI 指標視覺化 銀獎')" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">點擊放大檢視</button>
+        </div>
+      </div>
+
+      <div class="card portfolio-card">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover bi-thumb" src="BI-2.png" alt="護理部人力 專案縮圖" onclick="openImageLightbox('BI-2.png','護理部人力｜第一屆Power BI 指標視覺化 佳作')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">護理部人力<br>第一屆Power BI 指標視覺化 佳作</h5>
+          <p class="text-sm mb-4">分析護理單位人力分布，串接跨系統資料，作為多項分析的母本資料與評鑑介紹工具。</p>
+          <button type="button" onclick="openImageLightbox('BI-2.png','護理部人力｜第一屆Power BI 指標視覺化 佳作')" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">點擊放大檢視</button>
+        </div>
+      </div>
+
+      <div class="card portfolio-card">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover bi-thumb" src="BI-3.png" alt="護理部跌倒事件分析 專案縮圖" onclick="openImageLightbox('BI-3.png','護理部跌倒事件分析')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">護理部跌倒事件分析</h5>
+          <p class="text-sm mb-4">分析跌倒族群、情境與措施，利用關鍵影響因素及原因樹狀圖，作為品質監測與改善依據。</p>
+          <button type="button" onclick="openImageLightbox('BI-3.png','護理部跌倒事件分析')" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">點擊放大檢視</button>
+        </div>
+      </div>
+
+      <div class="card portfolio-card collapsible-card hidden">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover bi-thumb" src="BI-4.png" alt="護理部準時下班率 專案縮圖" onclick="openImageLightbox('BI-4.png','護理部準時下班率')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">護理部準時下班率</h5>
+          <p class="text-sm mb-4">以圖像化(小魚)呈現負向指標，兼顧主管需求與員工隱私，分析各單位準時下班率。</p>
+          <button type="button" onclick="openImageLightbox('BI-4.png','護理部準時下班率')" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">點擊放大檢視</button>
+        </div>
+      </div>
+
+      <div class="card portfolio-card collapsible-card hidden">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover bi-thumb" src="BI-5.png" alt="臨床教師總覽 專案縮圖" onclick="openImageLightbox('BI-5.png','臨床教師與學術總覽')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">臨床教師與學術總覽</h5>
+          <p class="text-sm mb-4">整合臨床教師、在職進修、部定教職、學術發表等資料，作為評鑑的單位介紹工具。</p>
+          <button type="button" onclick="openImageLightbox('BI-5.png','臨床教師與學術總覽')" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">點擊放大檢視</button>
+        </div>
+      </div>
+
+      <div class="card portfolio-card collapsible-card hidden">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover bi-thumb" src="BI-6.png" alt="住院來源分析 專案縮圖" onclick="openImageLightbox('BI-6.png','住院來源分析')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">住院來源分析</h5>
+          <p class="text-sm mb-4">分析各科部住院來源，並利用書籤功能提供多維度無縫檢視圖表。</p>
+          <button type="button" onclick="openImageLightbox('BI-6.png','住院來源分析')" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">點擊放大檢視</button>
+        </div>
+      </div>
+
+      <div class="card portfolio-card collapsible-card hidden">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover bi-thumb" src="BI-7.png" alt="護理部學術發表 專案縮圖" onclick="openImageLightbox('BI-7.png','護理部學術發表')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">護理部學術發表</h5>
+          <p class="text-sm mb-4">分析各單位學術會議、期刊、專案、專利、書籍等學術發表數量及內容。</p>
+          <button type="button" onclick="openImageLightbox('BI-7.png','護理部學術發表')" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">點擊放大檢視</button>
+        </div>
+      </div>
+
+      <div class="card portfolio-card collapsible-card hidden">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover bi-thumb" src="BI-8.png" alt="出院時間統計 專案縮圖" onclick="openImageLightbox('BI-8.png','出院時間統計')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">出院時間統計</h5>
+          <p class="text-sm mb-4">分析各科部10點前出院、今辦明出比率，提供管理者做為出入院效率管理參考。</p>
+          <button type="button" onclick="openImageLightbox('BI-8.png','出院時間統計')" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">點擊放大檢視</button>
+        </div>
+      </div>
+
+      <div class="card portfolio-card collapsible-card hidden">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover bi-thumb" src="BI-9.png" alt="新進人員訓練滿意度 專案縮圖" onclick="openImageLightbox('BI-9.png','新進人員訓練滿意度')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">新進人員訓練滿意度</h5>
+          <p class="text-sm mb-4">分析各年度新進人員訓練滿意度，並用於教學醫院評鑑資料呈現工具之一。</p>
+          <button type="button" onclick="openImageLightbox('BI-9.png','新進人員訓練滿意度')" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">點擊放大檢視</button>
+        </div>
+      </div>
+
+      <div class="card portfolio-card collapsible-card hidden">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover bi-thumb" src="BI-10.png" alt="護理部全人照護會議 專案縮圖" onclick="openImageLightbox('BI-10.png','護理部全人照護會議')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">護理部全人照護會議</h5>
+          <p class="text-sm mb-4">分析各年度跨領域會議的場次數量及主題，並用於教學醫院評鑑資料呈現工具之一。</p>
+          <button type="button" onclick="openImageLightbox('BI-10.png','護理部全人照護會議')" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">點擊放大檢視</button>
+        </div>
+      </div>
+
+      <div class="card portfolio-card collapsible-card hidden">
+        <div class="aspect-video">
+          <img class="w-full h-full object-cover bi-thumb" src="BI-11.png" alt="護理部離職分析 專案縮圖" onclick="openImageLightbox('BI-11.png','護理部離職分析')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+        </div>
+        <div class="p-6">
+          <h5 class="font-bold text-lg text-slate-800 mb-2">護理部離職分析</h5>
+          <p class="text-sm mb-4">分析各單位離職人數及離職原因，作為管理者人力資源管理參考。</p>
+          <button type="button" onclick="openImageLightbox('BI-11.png','護理部離職分析')" class="inline-block accent-bg text-white font-semibold px-4 py-2 rounded-lg transition-colors">點擊放大檢視</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-12 text-center">
+      <button id="toggle-portfolio-btn" class="accent-bg text-white font-semibold px-6 py-3 rounded-lg transition-colors hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400">
+        顯示更多作品
+      </button>
+    </div>
+  </div>
+</section>
+<!-- --- 作品集 結束 --- -->
+
+<footer id="page-footer" class="text-white py-12" style="background-color: var(--primary-color);">
+  <div class="container mx-auto px-6 text-center">
+    <h4 class="text-2xl font-bold mb-4">期待將醫療專業轉化為核保理賠的風險洞察力</h4>
+    <p class="mb-6">期望結合醫療專業背景、風險評估思維及分析能力，投入保險核保領域發展，協助進行風險評估、案件審查及核保決策，創造兼顧專業與效率的服務價值。</p>
+    <div class="flex flex-col items-center gap-3">
+      <div id="mail-trigger" class="inline-flex items-center gap-3 bg-white text-slate-800 rounded-full py-2 px-5 hover:bg-amber-100 transition-colors text-lg font-semibold cursor-pointer">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"></path></svg>
+        <span>ekatsiming@hotmail.com</span>
+      </div>
+      <p class="text-sm text-slate-200">0988-505-960（電話聯絡，08:00~21:00）</p>
+    </div>
+
+    <p class="mt-8 text-sm text-slate-400 flex items-center justify-center">
+      <span>&copy; 此頁面隱藏了一個彩蛋，你找到了嗎？<br>2025 HUANG,S.K.(A511H1) All Rights Reserved.</span>
+      <span class="relative group">
+        <svg id="ai-trigger" class="w-6 h-6 ml-3 text-amber-400 cursor-pointer" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+        <span class="absolute bottom-full mb-2 w-max px-3 py-1.5 bg-slate-800 text-white text-xs font-semibold rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-x-1/2 left-1/2 pointer-events-none">
+          咦？這是什麼？
+        </span>
+      </span>
+    </p>
+    <p id="easter-egg-hint" class="hidden text-center mt-4 text-amber-300 font-semibold">
+      ↓ 您發現了一個秘密，請繼續往下探索 ↓
+    </p>
+  </div>
+</footer>
+
+<div id="ai-modal-overlay" class="hidden opacity-0">
+  <div id="ai-modal" class="transform opacity-0 scale-95 -translate-y-4">
+    <p class="text-sm text-green-600">// AI HEADHUNTER SYSTEM //</p>
+    <p class="text-sm text-green-600">// STATUS: ANALYZING PROFILE...</p>
+    <p class="text-sm text-green-600 mb-4">// TARGET: HUANG, SHENG-KAI</p>
+    <div id="ai-report" class="typewriter"></div>
+  </div>
+</div>
+
+<!-- --- 圖片放大燈箱 --- -->
+<div id="img-lightbox-overlay" class="hidden">
+  <div class="max-w-5xl w-full" onclick="event.stopPropagation()">
+    <img id="img-lightbox-img" src="" alt="" class="w-full h-auto rounded-lg shadow-2xl">
+    <p id="img-lightbox-caption" class="text-white text-center mt-3 text-lg font-semibold"></p>
+    <p class="text-slate-300 text-center mt-1 text-sm">點擊空白處或按 ESC 關閉</p>
+  </div>
+</div>
+
+<script>
+// --- Standard Menu Script ---
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+menuBtn.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+mobileMenuLinks.forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+
+// --- Easter Egg AI Modal Script ---
+const aiTrigger = document.getElementById('ai-trigger');
+const mailTrigger = document.getElementById('mail-trigger');
+const aiOverlay = document.getElementById('ai-modal-overlay');
+const aiModal = document.getElementById('ai-modal');
+const aiReportContainer = document.getElementById('ai-report');
+const easterEggHint = document.getElementById('easter-egg-hint');
+
+const reportText = `[ANALYSIS COMPLETE]\n\n綜合評估：此人選展現出罕見的「風險辨識力」與「醫療專業判讀力」的結合。\n\n[關鍵特質分析]\n\n> DATA FLUENCY:\n 精通 Power BI，能將複雜數據轉化為具體行動策略（佐證：院內競賽獲獎）。此能力可直接應用於核保案件審查與風險評估。\n\n> RISK-AWARE CLINICIAN:\n 具備12年護理與醫療行政背景，熟悉病歷判讀、診斷邏輯與醫療流程，能精準辨識醫療文件中的異常與風險。\n\n> PROCESS OPTIMIZER:\n 善用數位工具與AI改善行政流程，降低錯誤率，展現高度的系統化思維與執行力。\n\n[AI 結論]\n\n潛力評估：極高。\n與「核保人員」職位契合度 > 94%。\n建議行動：【立即安排面談】`;
+
+let typeWriterInterval;
+function typeWriter(element, text) {
+  let i = 0;
+  element.innerHTML = '';
+  element.style.borderRight = '.15em solid #10B981';
+  clearInterval(typeWriterInterval);
+  typeWriterInterval = setInterval(() => {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+    } else {
+      clearInterval(typeWriterInterval);
+      element.style.borderRight = 'none';
+    }
+  }, 25);
+}
+
+function triggerEasterEgg() {
+  if (easterEggHint) { easterEggHint.classList.remove('hidden'); }
+  aiOverlay.classList.remove('hidden');
+  setTimeout(() => {
+    aiOverlay.classList.remove('opacity-0');
+    aiModal.classList.remove('opacity-0');
+    aiModal.classList.remove('scale-95');
+    aiModal.classList.remove('-translate-y-4');
+    typeWriter(aiReportContainer, reportText);
+  }, 20);
+}
+
+aiTrigger.addEventListener('click', triggerEasterEgg);
+mailTrigger.addEventListener('click', triggerEasterEgg);
+
+aiOverlay.addEventListener('click', (event) => {
+  if (event.target === aiOverlay) {
+    aiOverlay.classList.add('opacity-0');
+    aiModal.classList.add('opacity-0');
+    aiModal.classList.add('scale-95');
+    aiModal.classList.add('-translate-y-4');
+    setTimeout(() => {
+      aiOverlay.classList.add('hidden');
+      clearInterval(typeWriterInterval);
+      if (easterEggHint) { easterEggHint.classList.add('hidden'); }
+    }, 300);
+  }
+});
+
+// --- Portfolio Toggle Script ---
+const togglePortfolioBtn = document.getElementById('toggle-portfolio-btn');
+const collapsibleCards = document.querySelectorAll('.collapsible-card');
+let isPortfolioExpanded = false;
+togglePortfolioBtn.addEventListener('click', () => {
+  isPortfolioExpanded = !isPortfolioExpanded;
+  collapsibleCards.forEach(card => { card.classList.toggle('hidden'); });
+  togglePortfolioBtn.textContent = isPortfolioExpanded ? '收合部分作品' : '顯示更多作品';
+});
+
+// --- Image Lightbox Script (Power BI 作品點擊放大) ---
+const lightboxOverlay = document.getElementById('img-lightbox-overlay');
+const lightboxImg = document.getElementById('img-lightbox-img');
+const lightboxCaption = document.getElementById('img-lightbox-caption');
+
+function openImageLightbox(src, caption) {
+  lightboxImg.src = src;
+  lightboxImg.alt = caption;
+  lightboxCaption.textContent = caption;
+  lightboxOverlay.classList.remove('hidden');
+}
+function closeImageLightbox() {
+  lightboxOverlay.classList.add('hidden');
+}
+lightboxOverlay.addEventListener('click', closeImageLightbox);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closeImageLightbox(); }
+});
+</script>
+
+</body>
+</html>
