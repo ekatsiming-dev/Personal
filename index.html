@@ -73,15 +73,6 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 #ai-trigger { animation: restless-glow 2s infinite ease-in-out; }
 
 .portfolio-card { transition: all 0.5s ease-in-out; }
-
-/* --- 圖片放大燈箱樣式 --- */
-#img-lightbox-overlay {
-  @apply fixed inset-0 bg-black bg-opacity-85 z-50 items-center justify-center p-4;
-  cursor: zoom-out;
-}
-#img-lightbox-overlay.hidden { display: none; }
-#img-lightbox-overlay:not(.hidden) { display: flex; }
-.bi-thumb { cursor: zoom-in; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-600">
@@ -117,10 +108,8 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
       <img src="ME.png" alt="個人肖像" class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 shadow-lg" style="border-color: var(--primary-color);" onerror="this.onerror=null;this.src='https://placehold.co/224x224/003566/ffffff?text=頭像'">
     </div>
     <div class="text-center md:text-left">
-
       <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4">從醫療專業行政，走向風險評估與核保</h2>
-  <p class="text-xl md:text-2xl font-semibold" style="color: var(--primary-color);">黃聖凱</p>
-
+      <p class="text-xl md:text-2xl font-semibold" style="color: var(--primary-color);">黃聖凱</p>
 
       <div class="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
         <span class="badge">5年臨床照護｜新生兒・病嬰・成人心臟重症</span>
@@ -323,7 +312,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
       <div class="card portfolio-card">
         <div class="aspect-video">
-          <img class="w-full h-full object-cover bi-thumb" src="BI-1.png" alt="手術房間使用分析 專案縮圖" onclick="openImageLightbox('BI-1.png','手術房間使用分析｜第二屆Power BI 指標視覺化 銀獎')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+          <img class="w-full h-full object-cover" src="BI-1.png" alt="手術房間使用分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
         <div class="p-6">
           <h5 class="font-bold text-lg text-slate-800 mb-2">手術房間使用分析<br>第二屆Power BI 指標視覺化 銀獎</h5>
@@ -333,7 +322,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
       <div class="card portfolio-card">
         <div class="aspect-video">
-          <img class="w-full h-full object-cover bi-thumb" src="BI-2.png" alt="護理部人力 專案縮圖" onclick="openImageLightbox('BI-2.png','護理部人力｜第一屆Power BI 指標視覺化 佳作')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+          <img class="w-full h-full object-cover" src="BI-2.png" alt="護理部人力 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
         <div class="p-6">
           <h5 class="font-bold text-lg text-slate-800 mb-2">護理部人力<br>第一屆Power BI 指標視覺化 佳作</h5>
@@ -343,7 +332,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
       <div class="card portfolio-card">
         <div class="aspect-video">
-          <img class="w-full h-full object-cover bi-thumb" src="BI-3.png" alt="護理部跌倒事件分析 專案縮圖" onclick="openImageLightbox('BI-3.png','護理部跌倒事件分析')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+          <img class="w-full h-full object-cover" src="BI-3.png" alt="護理部跌倒事件分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
         <div class="p-6">
           <h5 class="font-bold text-lg text-slate-800 mb-2">護理部跌倒事件分析</h5>
@@ -353,7 +342,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
       <div class="card portfolio-card collapsible-card hidden">
         <div class="aspect-video">
-          <img class="w-full h-full object-cover bi-thumb" src="BI-4.png" alt="護理部準時下班率 專案縮圖" onclick="openImageLightbox('BI-4.png','護理部準時下班率')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+          <img class="w-full h-full object-cover" src="BI-4.png" alt="護理部準時下班率 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
         <div class="p-6">
           <h5 class="font-bold text-lg text-slate-800 mb-2">護理部準時下班率</h5>
@@ -363,7 +352,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
       <div class="card portfolio-card collapsible-card hidden">
         <div class="aspect-video">
-          <img class="w-full h-full object-cover bi-thumb" src="BI-5.png" alt="臨床教師總覽 專案縮圖" onclick="openImageLightbox('BI-5.png','臨床教師與學術總覽')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+          <img class="w-full h-full object-cover" src="BI-5.png" alt="臨床教師總覽 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
         <div class="p-6">
           <h5 class="font-bold text-lg text-slate-800 mb-2">臨床教師與學術總覽</h5>
@@ -373,7 +362,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
       <div class="card portfolio-card collapsible-card hidden">
         <div class="aspect-video">
-          <img class="w-full h-full object-cover bi-thumb" src="BI-6.png" alt="住院來源分析 專案縮圖" onclick="openImageLightbox('BI-6.png','住院來源分析')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+          <img class="w-full h-full object-cover" src="BI-6.png" alt="住院來源分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
         <div class="p-6">
           <h5 class="font-bold text-lg text-slate-800 mb-2">住院來源分析</h5>
@@ -383,7 +372,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
       <div class="card portfolio-card collapsible-card hidden">
         <div class="aspect-video">
-          <img class="w-full h-full object-cover bi-thumb" src="BI-7.png" alt="護理部學術發表 專案縮圖" onclick="openImageLightbox('BI-7.png','護理部學術發表')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+          <img class="w-full h-full object-cover" src="BI-7.png" alt="護理部學術發表 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
         <div class="p-6">
           <h5 class="font-bold text-lg text-slate-800 mb-2">護理部學術發表</h5>
@@ -393,7 +382,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
       <div class="card portfolio-card collapsible-card hidden">
         <div class="aspect-video">
-          <img class="w-full h-full object-cover bi-thumb" src="BI-8.png" alt="出院時間統計 專案縮圖" onclick="openImageLightbox('BI-8.png','出院時間統計')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+          <img class="w-full h-full object-cover" src="BI-8.png" alt="出院時間統計 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
         <div class="p-6">
           <h5 class="font-bold text-lg text-slate-800 mb-2">出院時間統計</h5>
@@ -403,7 +392,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
       <div class="card portfolio-card collapsible-card hidden">
         <div class="aspect-video">
-          <img class="w-full h-full object-cover bi-thumb" src="BI-9.png" alt="新進人員訓練滿意度 專案縮圖" onclick="openImageLightbox('BI-9.png','新進人員訓練滿意度')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+          <img class="w-full h-full object-cover" src="BI-9.png" alt="新進人員訓練滿意度 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
         <div class="p-6">
           <h5 class="font-bold text-lg text-slate-800 mb-2">新進人員訓練滿意度</h5>
@@ -413,7 +402,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
       <div class="card portfolio-card collapsible-card hidden">
         <div class="aspect-video">
-          <img class="w-full h-full object-cover bi-thumb" src="BI-10.png" alt="護理部全人照護會議 專案縮圖" onclick="openImageLightbox('BI-10.png','護理部全人照護會議')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+          <img class="w-full h-full object-cover" src="BI-10.png" alt="護理部全人照護會議 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
         <div class="p-6">
           <h5 class="font-bold text-lg text-slate-800 mb-2">護理部全人照護會議</h5>
@@ -423,7 +412,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
 
       <div class="card portfolio-card collapsible-card hidden">
         <div class="aspect-video">
-          <img class="w-full h-full object-cover bi-thumb" src="BI-11.png" alt="護理部離職分析 專案縮圖" onclick="openImageLightbox('BI-11.png','護理部離職分析')" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
+          <img class="w-full h-full object-cover" src="BI-11.png" alt="護理部離職分析 專案縮圖" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=圖片載入失敗';">
         </div>
         <div class="p-6">
           <h5 class="font-bold text-lg text-slate-800 mb-2">護理部離職分析</h5>
@@ -474,15 +463,6 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
     <p class="text-sm text-green-600">// STATUS: ANALYZING PROFILE...</p>
     <p class="text-sm text-green-600 mb-4">// TARGET: HUANG, SHENG-KAI</p>
     <div id="ai-report" class="typewriter"></div>
-  </div>
-</div>
-
-<!-- --- 圖片放大燈箱 --- -->
-<div id="img-lightbox-overlay" class="hidden">
-  <div class="max-w-5xl w-full" onclick="event.stopPropagation()">
-    <img id="img-lightbox-img" src="" alt="" class="w-full h-auto rounded-lg shadow-2xl">
-    <p id="img-lightbox-caption" class="text-white text-center mt-3 text-lg font-semibold"></p>
-    <p class="text-slate-300 text-center mt-1 text-sm">點擊空白處或按 ESC 關閉</p>
   </div>
 </div>
 
@@ -558,25 +538,6 @@ togglePortfolioBtn.addEventListener('click', () => {
   isPortfolioExpanded = !isPortfolioExpanded;
   collapsibleCards.forEach(card => { card.classList.toggle('hidden'); });
   togglePortfolioBtn.textContent = isPortfolioExpanded ? '收合部分作品' : '顯示更多作品';
-});
-
-// --- Image Lightbox Script (Power BI 作品點擊放大) ---
-const lightboxOverlay = document.getElementById('img-lightbox-overlay');
-const lightboxImg = document.getElementById('img-lightbox-img');
-const lightboxCaption = document.getElementById('img-lightbox-caption');
-
-function openImageLightbox(src, caption) {
-  lightboxImg.src = src;
-  lightboxImg.alt = caption;
-  lightboxCaption.textContent = caption;
-  lightboxOverlay.classList.remove('hidden');
-}
-function closeImageLightbox() {
-  lightboxOverlay.classList.add('hidden');
-}
-lightboxOverlay.addEventListener('click', closeImageLightbox);
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') { closeImageLightbox(); }
 });
 </script>
 
