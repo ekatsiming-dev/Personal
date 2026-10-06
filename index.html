@@ -12,48 +12,138 @@
 :root {
   --primary-color: #003566;
   --accent-color: #fca311;
-  --highlight-bg: #fef9c3;
+  --coral: #ff6b5b;
+  --mint: #19b9a5;
+  --highlight-bg: #fef3c7;
+  --sky: #eef6ff;
 }
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
-
-.section-title {
-  @apply text-5xl md:text-7xl font-extrabold text-slate-800 mb-12 text-center tracking-wide relative pb-4;
-}
-.section-title::after {
-  content: '';
-  @apply absolute bottom-0 left-1/2 w-24 h-1 rounded-full;
-  background-color: var(--primary-color);
-  transform: translateX(-50%);
-}
-.card {
-  @apply bg-white rounded-xl shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-xl;
-}
-.highlight {
-  background-color: var(--highlight-bg);
-  color: var(--primary-color);
-  @apply font-bold py-1 px-2 rounded;
-}
-.badge {
-  @apply inline-block bg-slate-100 text-sm font-medium px-4 py-2 rounded-full;
-  color: var(--primary-color);
-}
-.tag-pill {
-  @apply inline-block text-xs md:text-sm font-semibold px-3 py-1.5 rounded-full border;
-  color: var(--primary-color);
-  border-color: var(--primary-color);
-  background-color: #fff;
-}
 .primary-text { color: var(--primary-color); }
-.accent-bg { background-color: var(--accent-color); }
-.accent-bg:hover { background-color: #fbbf24; }
+.accent-bg { background-color: var(--accent-color); box-shadow: 0 4px 0 #c97d00; transition: transform .15s, box-shadow .15s; }
+.accent-bg:hover { background-color: #fbbf24; transform: translateY(-2px); box-shadow: 0 6px 0 #c97d00; }
+.accent-bg:active { transform: translateY(3px); box-shadow: 0 1px 0 #c97d00; }
 .timeline-dot { background-color: var(--primary-color); }
 .timeline-border { border-color: var(--primary-color); }
 
-.portfolio-card { transition: all 0.5s ease-in-out; }
+/* 捲動進度條 */
+#progress { position: fixed; top: 0; left: 0; height: 4px; width: 100%; z-index: 50; transform-origin: 0 50%; transform: scaleX(0);
+  background: linear-gradient(90deg, var(--accent-color), var(--coral), var(--mint)); }
+header { backdrop-filter: blur(8px); background: rgba(255,255,255,.85) !important; }
+header nav a { position: relative; padding-bottom: 2px; }
+header nav a::after { content: ''; position: absolute; left: 0; bottom: -2px; height: 3px; width: 100%; border-radius: 3px;
+  background: var(--accent-color); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+header nav a:hover::after { transform: scaleX(1); }
+
+/* 首頁 Hero：心電圖會自己畫出來 */
+.hero { position: relative; overflow: hidden; background: linear-gradient(180deg, var(--sky), #fff 90%); }
+.hero > main { position: relative; z-index: 2; }
+.blob { position: absolute; border-radius: 50%; filter: blur(50px); opacity: .45; z-index: 0; animation: drift 14s ease-in-out infinite alternate; }
+.blob.b1 { width: 320px; height: 320px; background: var(--accent-color); top: -80px; left: -60px; }
+.blob.b2 { width: 380px; height: 380px; background: #7cc4ff; right: -100px; bottom: -120px; animation-delay: -6s; }
+@keyframes drift { to { transform: translate(60px, 40px) scale(1.15); } }
+.ecg { position: absolute; left: 0; bottom: 18px; width: 100%; height: 110px; z-index: 1; pointer-events: none; }
+.ecg path { fill: none; stroke: var(--coral); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 1; stroke-dashoffset: 1; animation: beat 6s ease-in-out infinite; }
+@keyframes beat { 0% { stroke-dashoffset: 1; opacity: 1; } 65% { stroke-dashoffset: 0; opacity: 1; } 90% { stroke-dashoffset: 0; opacity: 0; } 100% { stroke-dashoffset: 1; opacity: 0; } }
+
+.avatar-wrap { position: relative; animation: bob 4s ease-in-out infinite; }
+.avatar-wrap::before { content: ''; position: absolute; inset: -14px; border-radius: 50%;
+  border: 3px dashed var(--accent-color); animation: spin 18s linear infinite; }
+@keyframes bob { 50% { transform: translateY(-10px); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.hero h2 { background: linear-gradient(100deg, var(--primary-color) 30%, var(--coral) 55%, var(--primary-color) 80%);
+  background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shine 6s linear infinite; }
+@keyframes shine { to { background-position: 200% center; } }
+.hero .badge { animation: pop .6s cubic-bezier(.3,1.6,.5,1) both; }
+.hero .badge:nth-child(1) { animation-delay: .3s; } .hero .badge:nth-child(2) { animation-delay: .45s; }
+.hero .badge:nth-child(3) { animation-delay: .6s; } .hero .badge:nth-child(4) { animation-delay: .75s; }
+@keyframes pop { from { opacity: 0; transform: scale(.6) translateY(16px); } }
+
+.badge { display: inline-block; background: #fff; font-size: .875rem; font-weight: 600; padding: .5rem 1rem; border-radius: 999px;
+  color: var(--primary-color); box-shadow: 0 2px 10px rgba(0,53,102,.1); }
+
+/* 區塊標題 */
+.section-title { font-size: 2.75rem; font-weight: 800; color: #1e293b; margin-bottom: 3rem; text-align: center; letter-spacing: .05em; position: relative; padding-bottom: 1rem; }
+@media (min-width: 768px) { .section-title { font-size: 3.75rem; } }
+.section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; height: 6px; width: 0; border-radius: 6px; transform: translateX(-50%);
+  background: linear-gradient(90deg, var(--accent-color), var(--coral)); transition: width .8s .2s cubic-bezier(.3,1.4,.5,1); }
+.section-title.in::after { width: 7rem; }
+
+/* 卡片 */
+.card { background: #fff; border-radius: 1.25rem; overflow: hidden; box-shadow: 0 4px 16px rgba(0,53,102,.08); border-bottom: 5px solid transparent; }
+.card:hover { transform: translateY(-10px) rotate(-.6deg); box-shadow: 0 18px 36px rgba(0,53,102,.18); border-bottom-color: var(--accent-color); }
+.card svg { transition: transform .4s cubic-bezier(.3,1.6,.5,1); }
+.card:hover svg { transform: scale(1.2) rotate(-8deg); }
+.portfolio-card img { transition: transform .6s; }
+.portfolio-card:hover img { transform: scale(1.08); }
+.tag-pill { display: inline-block; font-size: .85rem; font-weight: 600; padding: .4rem .9rem; border-radius: 999px; background: #fff;
+  color: var(--primary-color); border: 2px solid var(--primary-color); transition: transform .25s cubic-bezier(.3,1.6,.5,1), background .2s, color .2s; }
+.tag-pill:hover { transform: translateY(-4px) rotate(-3deg) scale(1.08); background: var(--primary-color); color: #fff; }
+.highlight { color: var(--primary-color); font-weight: 700; padding: 0 .25rem; border-radius: .25rem;
+  background: linear-gradient(var(--highlight-bg), var(--highlight-bg)) no-repeat left bottom / 0% 100%; transition: background-size .9s .3s; }
+.in .highlight, .highlight.in, .reveal.in .highlight { background-size: 100% 100%; }
+
+/* 時間軸：圓點脈動 */
+.timeline-dot { animation: ping 2.2s ease-out infinite; }
+@keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(0,53,102,.45); } 80%,100% { box-shadow: 0 0 0 14px rgba(0,53,102,0); } }
+
+/* 榮譽肯定卡片 */
+#honors .shadow-sm { transition: transform .25s cubic-bezier(.3,1.6,.5,1), box-shadow .25s; }
+#honors .shadow-sm:hover { transform: translateX(8px) scale(1.02); box-shadow: 0 10px 24px rgba(252,163,17,.3); }
+#honors h4 svg { animation: wiggle 3.5s ease-in-out infinite; transform-origin: 50% 80%; }
+@keyframes wiggle { 0%,80%,100% { transform: rotate(0); } 85% { transform: rotate(-14deg); } 90% { transform: rotate(12deg); } 95% { transform: rotate(-6deg); } }
+
+/* 捲動進場（輕量） */
+.reveal { opacity: 0; translate: 0 28px; }
+.reveal.in { opacity: 1; translate: 0 0; }
+.reveal { transition: opacity .6s ease var(--d, 0s), translate .6s cubic-bezier(.2,.8,.2,1) var(--d, 0s); }
+.card.reveal { transition: opacity .6s ease var(--d, 0s), translate .6s cubic-bezier(.2,.8,.2,1) var(--d, 0s), transform .3s, box-shadow .3s, border-color .3s; }
+.tag-pill.reveal { transition: opacity .6s ease var(--d, 0s), translate .6s cubic-bezier(.2,.8,.2,1) var(--d, 0s), transform .25s cubic-bezier(.3,1.6,.5,1), background .2s, color .2s; }
+#honors .shadow-sm.reveal { transition: opacity .6s ease var(--d, 0s), translate .6s cubic-bezier(.2,.8,.2,1) var(--d, 0s), transform .25s cubic-bezier(.3,1.6,.5,1), box-shadow .25s; }
+
+/* 學歷與證照：條列式版面（無卡片） */
+.ledger-block { display: grid; gap: 1rem 3rem; padding: 2.5rem 0; border-top: 2px dashed #cbd5e1; }
+.ledger-block:first-child { border-top: 0; padding-top: 0; }
+@media (min-width: 768px) { .ledger-block { grid-template-columns: 11rem 1fr; } }
+.ledger-head { display: flex; align-items: center; gap: .6rem; font-size: 1.5rem; font-weight: 800; color: var(--primary-color); align-self: start; }
+.ledger-head svg { width: 1.75rem; height: 1.75rem; color: var(--accent-color); }
+.ledger-row { display: flex; align-items: center; gap: .6rem; padding: .85rem 0; border-bottom: 1px solid #e2e8f0; transition: padding-left .25s; }
+.ledger-row:hover { padding-left: .75rem; }
+.chk { width: 1.4rem; height: 1.4rem; padding: .25rem; border-radius: 50%; background: var(--mint); color: #fff; flex-shrink: 0; transition: transform .4s cubic-bezier(.3,1.6,.5,1); }
+.ledger-row:hover .chk { transform: rotate(360deg) scale(1.2); }
+.cert-name { font-weight: 700; color: #1e293b; font-size: 1.05rem; }
+.cert-by { font-size: .875rem; color: #64748b; text-align: right; }
+.leader { flex: 1; min-width: 1rem; border-bottom: 2px dotted #cbd5e1; transform: translateY(4px); transition: border-color .25s; }
+.ledger-row:hover .leader { border-color: var(--accent-color); }
+.edu-name { font-size: 1.5rem; font-weight: 800; color: #1e293b; }
+.edu-date { font-weight: 700; color: var(--primary-color); white-space: nowrap; }
+.edu .cert-by { text-align: left; }
+.honor-year { display: grid; grid-template-columns: 1fr; gap: .5rem; margin-bottom: 1.75rem; }
+@media (min-width: 640px) { .honor-year { grid-template-columns: 5rem 1fr; gap: 1.25rem; } }
+.honor-year-num { font-size: 2rem; font-weight: 800; line-height: 1; color: var(--primary-color); }
+.honor-list { border-left: 3px solid var(--accent-color); padding-left: 1.25rem; display: grid; gap: 1.25rem; }
+.honor-item { position: relative; }
+.honor-item::before { content: ''; position: absolute; left: -1.7rem; top: .45rem; width: .75rem; height: .75rem; border-radius: 50%;
+  background: #fff; border: 3px solid var(--accent-color); transition: transform .3s cubic-bezier(.3,1.6,.5,1), background .2s; }
+.honor-item:hover::before { transform: scale(1.5); background: var(--accent-color); }
+.honor-org { font-size: .8rem; color: #64748b; }
+.honor-title { font-weight: 700; color: #1e293b; font-size: 1.05rem; margin-top: .1rem; }
+.honor-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .5rem; }
+.tag-award, .tag-plain { font-size: .75rem; padding: .2rem .65rem; border-radius: 999px; font-weight: 700; }
+.tag-award { background: var(--highlight-bg); color: var(--primary-color); }
+.tag-plain { background: #f1f5f9; color: #64748b; font-weight: 600; }
+.ledger-head svg { animation: wiggle 3.5s ease-in-out infinite; transform-origin: 50% 80%; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1; translate: 0 0; }
+  .ecg path { stroke-dashoffset: 0; }
+}
 </style>
 </head>
 <body class="bg-slate-50 text-slate-600">
+<div id="progress"></div>
 
 <header class="bg-white shadow-sm sticky top-0 z-20">
   <div class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -80,13 +170,16 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
   </div>
 </header>
 
-<main class="container mx-auto px-6 py-16 md:py-24">
+<div class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <svg class="ecg" viewBox="0 0 1200 110" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" vector-effect="non-scaling-stroke" d="M0 60 H180 l14 -12 l14 12 H330 l10 14 l20 -66 l22 92 l14 -40 H560 l16 -16 l16 16 H760 l10 14 l20 -66 l22 92 l14 -40 H1000 l14 -12 l14 12 H1200"/></svg>
+<main class="container mx-auto px-6 py-16 md:py-24 pb-28">
   <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
-    <div class="flex-shrink-0">
+    <div class="avatar-wrap flex-shrink-0">
       <img src="ME.png" alt="個人肖像" class="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 shadow-lg" style="border-color: var(--primary-color);" onerror="this.onerror=null;this.src='https://placehold.co/224x224/003566/ffffff?text=頭像'">
     </div>
     <div class="text-center md:text-left">
-      <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-4">從醫療到核保的路上</h2>
+      <h2 class="text-4xl md:text-6xl font-extrabold mb-4 pb-1">從醫療到核保的路上</h2>
       <p class="text-xl md:text-2xl font-semibold" style="color: var(--primary-color);">黃聖凱</p>
 
 <div class="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
@@ -99,6 +192,7 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
     </div>
   </div>
 </main>
+</div>
 
 <section id="about" class="bg-white py-20 md:py-28">
   <div class="container mx-auto px-6 max-w-4xl">
@@ -198,61 +292,32 @@ body { font-family: 'Inter', 'Noto Sans TC', sans-serif; }
   <div class="container mx-auto px-6">
     <h3 class="section-title">學歷與證照</h3>
     <div class="max-w-4xl mx-auto">
-
-      <div class="mb-16">
-        <h4 class="text-2xl font-bold text-slate-800 mb-6 text-center flex items-center justify-center gap-3">
-          <svg class="w-7 h-7 primary-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.25V15a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.75L23 9l-11-6zm-1 14H7v-2h4v2zm0-3H7v-2h4v2zm8-1.75L12 15l-7-3.25V9.9l7 3.85 7-3.85v2.35z"></path></svg>
-          <span>學歷</span>
-        </h4>
-        <div class="bg-white rounded-lg shadow-sm p-6 text-center max-w-sm mx-auto border-t-4" style="border-color: var(--primary-color);">
-          <p class="text-xl font-semibold text-slate-800">高雄醫學大學 護理學系</p>
-          <p class="text-slate-500 mt-1">2009/9 - 2013/6｜大學畢業</p>
-        </div>
-      </div>
-
-      <div class="mb-16">
-        <h4 class="text-2xl font-bold text-slate-800 mb-8 text-center flex items-center justify-center gap-3">
-          <svg class="w-7 h-7 primary-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" /></svg>
-          <span>資格認證</span>
-        </h4>
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-  <div class="bg-white rounded-lg shadow-sm p-5 border-l-4" style="border-color: var(--primary-color);">
-    <p class="font-semibold text-slate-800">高考護理師執照</p>
-    <p class="text-sm text-slate-500 mt-1">考試院</p>
-  </div>
-  <div class="bg-white rounded-lg shadow-sm p-5 border-l-4" style="border-color: var(--primary-color);">
-    <p class="font-semibold text-slate-800">CPR證照</p>
-    <p class="text-sm text-slate-500 mt-1">中華民國紅十字會</p>
-  </div>
-  <div class="bg-white rounded-lg shadow-sm p-5 border-l-4" style="border-color: var(--primary-color);">
-    <p class="font-semibold text-slate-800">GEPT 全民英檢中級</p>
-    <p class="text-sm text-slate-500 mt-1">LTTC財團法人語言訓練測驗中心</p>
-  </div>
-  <div class="bg-white rounded-lg shadow-sm p-5 border-l-4" style="border-color: var(--primary-color);">
-    <p class="font-semibold text-slate-800">Gemini Certified Educator</p>
-    <p class="text-sm text-slate-500 mt-1">AI資格認證</p>
-  </div>
-</div>
-        </div>
-      </div>
-
-      <div>
-        <h4 class="text-2xl font-bold text-slate-800 mb-8 text-center flex items-center justify-center gap-3">
-          <svg class="w-7 h-7 primary-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56L2 18.93 3.41 20.34 9 14.75l3.02 3.02-.46 1.34-1.1-1.1-1.41 1.41 3.5 3.5 1.41-1.41-1.02-1.02.83-2.44 5.16 5.16 1.41-1.41-7-7zM18.5 10l-4.5 12h2l1.12-3h4.75L23 22h2l-4.5-12h-2zm.5 7l1.5-4 1.5 4h-3z"/></svg>
-          <span>語言能力</span>
-        </h4>
-        <div class="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-center">
-          <div class="bg-white rounded-lg shadow-sm p-5">
-            <p class="font-semibold text-slate-800">中文</p>
-            <p class="text-sm text-slate-500 mt-1">聽/說/讀/寫：精通</p>
-          </div>
-          <div class="bg-white rounded-lg shadow-sm p-5">
-            <p class="font-semibold text-slate-800">英文</p>
-            <p class="text-sm text-slate-500 mt-1">聽/說/讀/寫：中等</p>
-          </div>
-        </div>
-      </div>
-
+<div class="ledger-block"><h4 class="ledger-head"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l4 2.25V15a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.75L23 9l-11-6zm-1 14H7v-2h4v2zm0-3H7v-2h4v2zm8-1.75L12 15l-7-3.25V9.9l7 3.85 7-3.85v2.35z"/></svg><span>學歷</span></h4><div class="ledger-body">
+<div class="ledger-row edu"><div><p class="edu-name">高雄醫學大學 護理學系</p><p class="cert-by" style="margin-top:.25rem">大學畢業</p></div><span class="leader"></span><span class="edu-date">2009/9 – 2013/6</span></div>
+</div></div>
+<div class="ledger-block"><h4 class="ledger-head"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg><span>資格認證</span></h4><div class="ledger-body">
+<div class="ledger-row"><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span class="cert-name">高考護理師執照</span><span class="leader"></span><span class="cert-by">考試院</span></div>
+<div class="ledger-row"><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span class="cert-name">CPR證照</span><span class="leader"></span><span class="cert-by">中華民國紅十字會</span></div>
+<div class="ledger-row"><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span class="cert-name">GEPT 全民英檢中級</span><span class="leader"></span><span class="cert-by">LTTC 財團法人語言訓練測驗中心</span></div>
+<div class="ledger-row"><svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span class="cert-name">Gemini Certified Educator</span><span class="leader"></span><span class="cert-by">AI資格認證</span></div>
+</div></div>
+<div class="ledger-block"><h4 class="ledger-head"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V19H7v2h10v-2h-4v-3.1a5.01 5.01 0 0 0 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/></svg><span>榮譽肯定</span></h4><div class="ledger-body">
+<div class="honor-year"><span class="honor-year-num">2021</span><div class="honor-list">
+<div class="honor-item"><p class="honor-org">奇美醫院 CiCARE 比賽</p><p class="honor-title">「拒絕大排長龍」</p><div class="honor-tags"><span class="tag-award">銀獎</span><span class="tag-plain">團體</span></div></div>
+</div></div>
+<div class="honor-year"><span class="honor-year-num">2022</span><div class="honor-list">
+<div class="honor-item"><p class="honor-org">臺灣醫療品質協會</p><p class="honor-title">「疫情期間病房管理」</p><div class="honor-tags"><span class="tag-award">海報發表</span></div></div>
+<div class="honor-item"><p class="honor-org">國際護理創意獎暨坎城未來獅培訓計畫</p><p class="honor-title">「消失的護理師」</p><div class="honor-tags"><span class="tag-award">社群影響力獎</span><span class="tag-plain">團體</span></div></div>
+<div class="honor-item"><p class="honor-org">國際護理創意獎暨坎城未來獅培訓計畫</p><p class="honor-title">「全方位導管偵測儀」</p><div class="honor-tags"><span class="tag-award">銅獎</span><span class="tag-award">現場人氣獎</span><span class="tag-award">社群影響力獎</span><span class="tag-plain">團體</span></div></div>
+</div></div>
+<div class="honor-year"><span class="honor-year-num">2023</span><div class="honor-list">
+<div class="honor-item"><p class="honor-org">奇美醫院</p><p class="honor-title">8月份人氣關懷王</p><div class="honor-tags"><span class="tag-award">人氣關懷王</span></div></div>
+</div></div>
+<div class="honor-year"><span class="honor-year-num">2024</span><div class="honor-list">
+<div class="honor-item"><p class="honor-org">奇美醫院 Power BI 比賽</p><p class="honor-title">「護理部人力現況地圖」</p><div class="honor-tags"><span class="tag-award">佳作</span></div></div>
+<div class="honor-item"><p class="honor-org">奇美醫院 Power BI 比賽</p><p class="honor-title">「手術房間使用分析」</p><div class="honor-tags"><span class="tag-award">銀獎</span></div></div>
+</div></div>
+</div></div>
     </div>
   </div>
 </section>
@@ -445,6 +510,23 @@ togglePortfolioBtn.addEventListener('click', () => {
   isPortfolioExpanded = !isPortfolioExpanded;
   collapsibleCards.forEach(card => { card.classList.toggle('hidden'); });
   togglePortfolioBtn.textContent = isPortfolioExpanded ? '收合部分作品' : '顯示更多作品';
+});
+
+// --- 捲動進度條 + 進場動畫 ---
+const bar = document.getElementById('progress');
+addEventListener('scroll', () => {
+  const h = document.documentElement;
+  bar.style.transform = 'scaleX(' + (h.scrollTop / (h.scrollHeight - h.clientHeight || 1)) + ')';
+}, { passive: true });
+const targets = document.querySelectorAll('.section-title, section .card, .tag-pill, #experience .pl-8, #honors .ledger-row, #honors .honor-item, #honors .honor-year-num, #honors h4, #about p, footer h4, footer p, footer a');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: .15 });
+targets.forEach(el => {
+  el.classList.add('reveal');
+  const sibs = [...el.parentElement.children].filter(c => c.classList.contains('reveal') || c === el);
+  el.style.setProperty('--d', Math.min(sibs.indexOf(el), 5) * 0.08 + 's');
+  io.observe(el);
 });
 </script>
 
